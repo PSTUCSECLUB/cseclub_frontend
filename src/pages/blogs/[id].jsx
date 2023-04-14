@@ -12,17 +12,16 @@ export default function Blog() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="blog">
-        <div className="blog__coverimg__wrapper">
-          {" "}
-          <Image
-            className="blog__coverimg"
-            src={"/images/blog/blog_cover.webp"}
-            alt="blog cover image"
-            fill
-          />
-        </div>
-
         <main className="blog__contents">
+          <div className="blog__coverimg__wrapper">
+            {" "}
+            <Image
+              className="blog__coverimg"
+              src={"/images/blog/blog_cover.webp"}
+              alt="blog cover image"
+              fill
+            />
+          </div>
           <div className="blog__info">
             <h6 className="blog__catagory__label">/ Competative Programming</h6>
             <h2 className="blog__title">
