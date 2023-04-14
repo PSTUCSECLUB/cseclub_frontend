@@ -1,0 +1,169 @@
+.blog {
+  &__coverimg {
+    object-fit: cover;
+    &__wrapper {
+      height: 46rem;
+      width: 100%;
+      position: relative;
+      margin-bottom: 5rem;
+      @include respond(phone) {
+        margin-bottom: 2rem;
+        height: 38rem;
+      }
+    }
+  }
+  &__contents {
+    width: 60%;
+    margin: auto;
+    @include respond(tab-land) {
+      width: 80%;
+    }
+    @include respond(phone) {
+      width: 90%;
+    }
+  }
+  &__article {
+    margin-top: 5rem;
+    &::first-letter {
+      font-size: 4.5rem;
+      line-height: 1;
+    }
+    h3 {
+      font-size: 3.2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+    p {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+    ol,
+    ul {
+      margin-left: 7rem;
+      margin-bottom: 5rem;
+      li {
+        margin-bottom: 1rem;
+        font-weight: 500;
+        font-size: 1.6rem;
+      }
+    }
+    a {
+    }
+    img {
+      width: 100%;
+      border-radius: 1rem;
+      margin-bottom: 3rem;
+    }
+  }
+  &__info {
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &__left {
+      }
+      &__right {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        @include respond(phone) {
+          flex-direction: column;
+          gap: 0;
+        }
+      }
+    }
+    &__author {
+      @include flexCenter;
+      &__avatar {
+        border-radius: 50%;
+        &__wrapper {
+          position: relative;
+          height: 6rem;
+          width: 6rem;
+
+          @include respond(phone) {
+            height: 5rem;
+            width: 5rem;
+          }
+        }
+      }
+      &__details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-left: 1rem;
+      }
+      &__name {
+        font-weight: 500;
+        font-size: 1.4rem;
+        line-height: 130.18%;
+      }
+      &__job {
+        font-size: 1.4rem;
+        line-height: 130.18%;
+      }
+    }
+    &__dash {
+      @include respond(phone) {
+        display: none;
+      }
+    }
+
+    &__date {
+      @include respond(tab-land) {
+        font-size: 1.8rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.4rem;
+      }
+    }
+    &__duration {
+      @include respond(tab-land) {
+        font-size: 1.8rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.4rem;
+      }
+    }
+  }
+  &__catagory__label {
+    font-weight: 300;
+    font-size: 2rem;
+    line-height: 130.18%;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    color: black;
+    @include respond(tab-land) {
+      font-size: 1.8rem;
+    }
+
+    @include respond(phone) {
+      font-size: 1.6rem;
+    }
+  }
+  &__title {
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 4.2rem;
+    line-height: 105.68%;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    @include respond(tab-land) {
+      font-size: 4rem;
+    }
+    @include respond(tab-port) {
+      font-size: 3.6rem;
+    }
+    @include respond(phone) {
+      font-size: 3rem;
+    }
+  }
+}
