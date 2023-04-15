@@ -1,0 +1,87 @@
+.event {
+  &__coverimg {
+    object-fit: cover;
+    &__wrapper {
+      height: 48rem;
+      width: 100%;
+      margin: auto;
+      position: relative;
+      margin-bottom: 3rem;
+      @include respond(tab-land) {
+        height: 46rem;
+      }
+      @include respond(tab-port) {
+        height: 40rem;
+      }
+      @include respond(phone) {
+        margin-bottom: 2rem;
+        height: 32rem;
+      }
+      @include respond(phone-sm) {
+        height: 22rem;
+      }
+    }
+  }
+
+  &__article {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 5rem;
+
+    h3 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-transform: capitalize;
+      line-height: 1.2;
+      @include respond(phone) {
+        font-size: 2.6rem;
+      }
+    }
+
+    h4 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      @include respond(phone) {
+        font-size: 2rem;
+      }
+    }
+    p,
+    ul,
+    ol {
+      margin-bottom: 10rem;
+    }
+    p {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    ol,
+    ul {
+      margin-left: 7rem;
+
+      text-align: left;
+      font-size: 2rem;
+      li {
+        margin-bottom: 1rem;
+        font-weight: 400;
+      }
+      @include respond(phone) {
+        margin-left: 4rem;
+      }
+    }
+    a {
+    }
+    img {
+      width: 100%;
+
+      margin-bottom: 1rem;
+    }
+    img + h4 {
+      text-align: center;
+      margin: 0;
+      margin-bottom: 5rem;
+    }
+  }
+}
