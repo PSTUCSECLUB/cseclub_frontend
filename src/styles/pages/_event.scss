@@ -13,13 +13,13 @@
       @include respond(tab-port) {
         height: 40rem;
       }
-      // @include respond(phone) {
-      //   margin-bottom: 2rem;
-      //   height: 36rem;
-      // }
-      // @include respond(phone-sm) {
-      //   height: 32rem;
-      // }
+      @include respond(phone) {
+        margin-bottom: 2rem;
+        height: 34rem;
+      }
+      @include respond(phone-sm) {
+        height: 32rem;
+      }
     }
   }
 
@@ -74,7 +74,7 @@
         font-weight: 400;
       }
       @include respond(phone) {
-        margin-left: 3rem;
+        margin-left: 2rem;
       }
     }
     a {
