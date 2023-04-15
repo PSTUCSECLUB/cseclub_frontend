@@ -13,13 +13,13 @@
       @include respond(tab-port) {
         height: 40rem;
       }
-      @include respond(phone) {
-        margin-bottom: 2rem;
-        height: 32rem;
-      }
-      @include respond(phone-sm) {
-        height: 22rem;
-      }
+      // @include respond(phone) {
+      //   margin-bottom: 2rem;
+      //   height: 36rem;
+      // }
+      // @include respond(phone-sm) {
+      //   height: 32rem;
+      // }
     }
   }
 
@@ -28,6 +28,12 @@
     width: 80%;
     margin: auto;
     margin-top: 5rem;
+    @include respond(tab-land) {
+      width: 86%;
+    }
+    @include respond(phone) {
+      width: 92%;
+    }
 
     h3 {
       font-size: 3.2rem;
@@ -82,6 +88,17 @@
       text-align: center;
       margin: 0;
       margin-bottom: 5rem;
+    }
+  }
+
+  &__schedule__wrapper {
+    width: 80%;
+    margin: auto;
+    @include respond(tab-land) {
+      width: 86%;
+    }
+    @include respond(phone) {
+      width: 92%;
     }
   }
 }

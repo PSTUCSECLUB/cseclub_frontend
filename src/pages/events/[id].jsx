@@ -1,6 +1,31 @@
+import Schedule from "@/components/schedule";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
+
+const schedules = [
+  {
+    title: "Starting Event",
+    time: "11AM",
+    details: "This will be the world final",
+  },
+  {
+    title: "Starting Event",
+    time: "11AM",
+    details: "This will be the world final",
+  },
+  {
+    title: "Starting Event",
+    time: "11AM",
+    details: "This will be the world final",
+  },
+  {
+    title: "Starting Event",
+    time: "11AM",
+    details: "This will be the world final",
+  },
+];
 
 export default function Event() {
   return (
@@ -21,6 +46,7 @@ export default function Event() {
             fill
           />
         </div>
+
         <main className="event__contents">
           <article className="event__article">
             <h3>Description:</h3>
@@ -80,11 +106,10 @@ export default function Event() {
               <li>Java</li>
               <li>Typescript</li>
             </ul>
-            <h3>See an example:</h3>
-
-            <img src="/images/blog/blog_cover.webp" alt="blog_cover" />
-            <h4>First See an example</h4>
           </article>
+          <div className="event__schedule__wrapper">
+            <Schedule schedules={schedules} />
+          </div>
         </main>
       </div>
     </>
