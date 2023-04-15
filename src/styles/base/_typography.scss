@@ -3,6 +3,24 @@ body {
   font-weight: 300;
   /*font-size: 16px;*/
   font-size: 1.8rem;
-  line-height: 1.6;
-  color: rgb(59, 59, 59);
+  line-height: 1.7;
+  color: $color-gray-dark;
+}
+
+.heading-secondary {
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 4.2rem;
+  line-height: 105.68%;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+  @include respond(tab-land) {
+    font-size: 4rem;
+  }
+  @include respond(tab-port) {
+    font-size: 3.6rem;
+  }
+  @include respond(phone) {
+    font-size: 3.6rem;
+  }
 }

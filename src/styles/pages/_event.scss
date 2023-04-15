@@ -2,6 +2,7 @@
   &__coverimg {
     object-fit: cover;
     &__wrapper {
+      position: relative;
       height: 48rem;
       width: 100%;
       margin: auto;
@@ -10,15 +11,12 @@
       @include respond(tab-land) {
         height: 46rem;
       }
-      @include respond(tab-port) {
-        height: 40rem;
-      }
+      // @include respond(tab-port) {
+      //   height: 62rem;
+      // }
       @include respond(phone) {
         margin-bottom: 2rem;
-        height: 34rem;
-      }
-      @include respond(phone-sm) {
-        height: 32rem;
+        height: 58rem;
       }
     }
   }

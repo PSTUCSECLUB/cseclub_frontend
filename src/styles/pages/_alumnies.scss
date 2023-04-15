@@ -1,0 +1,21 @@
+.alumnies {
+  &__page {
+  }
+  &__wrapper {
+    width: 86%;
+    margin: auto;
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    @include respond(tab-port) {
+      width: 92%;
+      gap: 2rem;
+    }
+    @include respond(phone) {
+      width: 96%;
+      gap: 2rem;
+    }
+  }
+}

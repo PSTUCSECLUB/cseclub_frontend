@@ -28,7 +28,7 @@ const schedules = [
 ];
 
 export default function Event() {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 900px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
   return (
     <>
       <Head>
@@ -43,7 +43,7 @@ export default function Event() {
           {!isTabletOrMobile && (
             <Image
               className="event__coverimg"
-              src={"/images/event/event_cover" + ".jpg"}
+              src={"/images/event/event_cover_1" + ".jpg"}
               alt="event cover image"
               fill
             />
@@ -51,7 +51,7 @@ export default function Event() {
           {isTabletOrMobile && (
             <Image
               className="event__coverimg"
-              src={"/images/event/event_cover-pt.jpg"}
+              src={"/images/event/event_cover_1-pt.jpg"}
               alt="event cover image"
               fill
             />

@@ -13,15 +13,6 @@ export default function Blog() {
       </Head>
       <div className="blog">
         <main className="blog__contents">
-          <div className="blog__coverimg__wrapper">
-            {" "}
-            <Image
-              className="blog__coverimg"
-              src={"/images/blog/blog_cover.webp"}
-              alt="blog cover image"
-              fill
-            />
-          </div>
           <div className="blog__info">
             <h6 className="blog__catagory__label">/ Competative Programming</h6>
             <h2 className="blog__title">
@@ -54,6 +45,15 @@ export default function Blog() {
               </div>
             </div>
           </div>
+          <div className="blog__coverimg__wrapper">
+            {" "}
+            <Image
+              className="blog__coverimg"
+              src={"/images/blog/blog_cover.webp"}
+              alt="blog cover image"
+              fill
+            />
+          </div>
           <article className="blog__article">
             <p>
               <span>T</span>hese days, we use devices and input our data in them
@@ -70,31 +70,25 @@ export default function Blog() {
             <h3>Topics you need to know:</h3>
             <ol>
               <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
-              <li>Binary Search</li>
+              <li>Radix sort</li>
+              <li>Merge Sort</li>
+              <li>Bucket Sort</li>
+              <li>Heap Sort</li>
             </ol>
             <a href="www.google.com">More on this</a>
-            <h3>Peoples are trying this also</h3>
+            <h3>Langueages you need to know</h3>
             <ul>
               <li>C#</li>
-              <li>C#</li>
-              <li>C#</li>
-              <li>C#</li>
-              <li>C#</li>
-              <li>C#</li>
-              <li>C#</li>
-              <li>C#</li>
+              <li>C++</li>
+              <li>Go</li>
+              <li>Python</li>
+              <li>Java</li>
+              <li>Typescript</li>
             </ul>
             <h3>See an example:</h3>
-            <h4>First See an example</h4>
+
             <img src="/images/blog/blog_cover.webp" alt="blog_cover" />
+            <h4>First See an example</h4>
           </article>
         </main>
       </div>
