@@ -1,8 +1,8 @@
 import Schedule from "@/components/schedule";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 
 const schedules = [
   {
@@ -28,6 +28,7 @@ const schedules = [
 ];
 
 export default function Event() {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 900px)" });
   return (
     <>
       <Head>
@@ -39,12 +40,22 @@ export default function Event() {
       <div className="event">
         <div className="event__coverimg__wrapper">
           {" "}
-          <Image
-            className="event__coverimg"
-            src={"/images/event/event_cover.jpg"}
-            alt="event cover image"
-            fill
-          />
+          {!isTabletOrMobile && (
+            <Image
+              className="event__coverimg"
+              src={"/images/event/event_cover" + ".jpg"}
+              alt="event cover image"
+              fill
+            />
+          )}
+          {isTabletOrMobile && (
+            <Image
+              className="event__coverimg"
+              src={"/images/event/event_cover-pt.jpg"}
+              alt="event cover image"
+              fill
+            />
+          )}
         </div>
 
         <main className="event__contents">
