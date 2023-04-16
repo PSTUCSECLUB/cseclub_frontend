@@ -1,0 +1,75 @@
+.event-details-form {
+  background-color: $color-white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+
+  padding: 0 5rem;
+  @include respond(phone) {
+    padding: 0 1rem;
+  }
+}
+.event-images-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+  &__success {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.ql-container {
+  min-height: 35rem;
+}
+
+.form {
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    > label {
+      font-size: 1.6rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+    }
+  }
+  &__input-text {
+    padding: 1rem 1.5rem;
+    font: inherit;
+    border: none;
+    outline: none;
+    border: 1px solid $color-gray-light-1;
+  }
+  &__textarea {
+    padding: 1rem 1.5rem;
+    min-height: 10rem;
+    font: inherit;
+    border: none;
+    outline: none;
+    border: 1px solid $color-gray-light-1;
+  }
+  &__autosuggestion {
+    padding: 1rem 1.5rem;
+    font: inherit;
+    border: none;
+    outline: none;
+    border: 1px solid $color-gray-light-1;
+    + ul {
+      max-height: 15rem;
+      width: 20rem;
+      overflow-y: scroll;
+      li {
+        cursor: pointer;
+      }
+    }
+  }
+  &__img__input {
+    display: none;
+  }
+}
