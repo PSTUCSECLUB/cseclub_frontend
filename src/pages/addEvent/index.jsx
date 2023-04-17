@@ -3,6 +3,8 @@ import Editor from "@/components/editor";
 import EventDetailsForm from "@/components/event/eventDetailsForm";
 import EventImagesForm from "@/components/event/eventImagesForm";
 import ImagesForm from "@/components/event/eventImagesForm";
+import EventScheduleForm from "@/components/event/eventScheduleForm";
+import EventSponsorForm from "@/components/event/eventSponsorForm";
 import PageCover from "@/components/pageCover";
 import Stepper from "@/components/stepper";
 import Head from "next/head";
@@ -14,14 +16,18 @@ const steps = [
     value: "Provide Contents",
   },
   { value: "Provide Images" },
-  { value: "Preview" },
+  { value: "Provide Schedules" },
+  { value: "Provide Sponsor" },
+  { value: "Preview & Save" },
 ];
 
 function chooseComp(step) {
   if (step === 1) return <EventDetailsForm />;
   if (step === 2) return <Editor />;
   if (step === 3) return <EventImagesForm />;
-  if (step === 4) return <h1>Preview</h1>;
+  if (step === 4) return <EventScheduleForm />;
+  if (step === 5) return <EventSponsorForm />;
+  if (step === 6) return <h1>Preview and Save</h1>;
 }
 export default function AddEvent() {
   const [currentStep, setCurrentStep] = useState(1);

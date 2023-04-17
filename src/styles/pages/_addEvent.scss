@@ -12,6 +12,9 @@
     flex-wrap: wrap;
     gap: 0rem;
     align-items: center;
+    @include respond(tab-port) {
+      width: 90%;
+    }
     @include respond(phone) {
       padding-top: 2rem;
       width: 96%;
@@ -28,6 +31,7 @@
     align-items: center;
     flex-direction: column;
     @include respond(tab-port) {
+      width: 100%;
     }
     @include respond(phone) {
       width: 100%;
@@ -37,7 +41,7 @@
   &__step__btns {
     margin-top: 2rem;
     position: absolute;
-    bottom: 8rem;
+    bottom: -0rem;
     width: 80%;
     justify-content: space-between;
     @include respond(phone) {

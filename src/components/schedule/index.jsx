@@ -9,9 +9,9 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 
 const styles = [
-  { background: "rgb(33, 150, 243)", color: "#fff" },
-  { background: "rgb(33, 120, 243)", color: "#fff" },
-  { background: "rgb(33, 100, 243)", color: "#fff" },
+  { background: "#4fa16c", color: "#fff" },
+  { background: "rgb(242, 153, 74)", color: "#fff" },
+  { background: "rgb(236, 3, 141)", color: "#fff" },
 ];
 
 const icons = ["hour", "play", "view"];
@@ -38,7 +38,7 @@ export default function Schedule({ schedules = [] }) {
                   contentArrowStyle={{
                     borderRight: "7px solid  rgb(33, 150, 243)",
                   }}
-                  iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+                  iconStyle={styles[Math.floor(Math.random() * styles.length)]}
                   icon={
                     iconsMap[icons[Math.floor(Math.random() * icons.length)]]
                   }

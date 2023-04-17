@@ -20,7 +20,24 @@
     gap: 1rem;
   }
 }
-
+.quill {
+  width: 96rem;
+  @include respond(tab-land) {
+    width: 80rem;
+  }
+  @include respond(tab-port) {
+    width: 66rem;
+  }
+  @include respond(phone) {
+    width: 45rem;
+  }
+  @include respond(phone-sm) {
+    width: 40rem;
+  }
+  @media (max-width: "329px") {
+    width: 32rem;
+  }
+}
 .ql-container {
   min-height: 35rem;
 }
@@ -71,5 +88,92 @@
   }
   &__img__input {
     display: none;
+  }
+}
+
+.schedule {
+  &__form {
+    @include respond(phone) {
+      text-align: center;
+    }
+  }
+  &__inputs {
+    display: flex;
+    gap: 0.5rem;
+    @include respond(phone) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    @include respond(phone-sm) {
+    }
+    > input {
+      font: inherit;
+      font-size: 1.6rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  &__btn {
+    padding: 1rem 1.8rem;
+    background: $color-primary-light;
+    color: $color-white;
+    border: none;
+    outline: none;
+    border-radius: 5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  &__delete__btn {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+
+    border: none;
+    cursor: pointer;
+    background: transparent;
+  }
+  &__list {
+    list-style: none;
+    background-color: $color-white-light;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 3rem;
+    margin-top: 2rem;
+    text-align: left;
+    &__item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-color: $color-white;
+      padding: 1rem;
+      &__title {
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+      &__time {
+        font-size: 1.3rem;
+      }
+      &__details {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+.sponsors {
+  &__form {
+    text-align: center;
+  }
+  &__inputs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    > input {
+      font: inherit;
+      font-size: 1.6rem;
+      padding: 0.5rem 1rem;
+    }
   }
 }
