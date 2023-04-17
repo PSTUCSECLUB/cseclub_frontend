@@ -1,13 +1,9 @@
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import React, { forwardRef } from "react";
 
-export default function Editor() {
+const Editor = forwardRef(function MyInput(props, ref) {
   const ReactQuill = dynamic(() => import("./reactQuill"), { ssr: false });
-  const [content, setContent] = useState("");
+  return <ReactQuill quillRef={ref} />;
+});
 
-  return (
-    <div>
-      <ReactQuill content={content} setContent={setContent} />
-    </div>
-  );
-}
+export default Editor;

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Remove, AddPhotoAlternate, CheckCircle } from "@mui/icons-material";
-function EventSponsorForm() {
-  const [sponsors, setSponsors] = useState([]);
+function EventSponsorForm({ sponsors, onAdd, onDelete }) {
   const [name, setName] = useState("");
   const [site, setSite] = useState("");
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(null);
 
   function handleName(e) {
     setName(e.target.value);
@@ -13,6 +12,7 @@ function EventSponsorForm() {
     setSite(e.target.value);
   }
   function handleImg(event) {
+    console.log(img);
     if (event.target.files && event.target.files[0]) {
       const selectedImage = event.target.files[0];
       setImg(selectedImage);
@@ -21,24 +21,16 @@ function EventSponsorForm() {
 
   function handleAddSponsor() {
     if (name && img) {
-      setSponsors([
-        ...sponsors,
-        {
-          name,
-          site,
-          img,
-        },
-      ]);
+      onAdd({ name, site, img });
+
       setName("");
       setSite("");
-      setImg("");
+      setImg(null);
     }
   }
 
   function handleDeleteSponsor(index) {
-    const newSponsors = [...sponsors];
-    newSponsors.splice(index, 1);
-    setSponsors(newSponsors);
+    onDelete(index);
   }
 
   return (
@@ -66,7 +58,10 @@ function EventSponsorForm() {
             accept="image/*"
             name="img"
             id="imageInput"
-            onChange={handleImg}
+            onChange={(e) => {
+              console.log("clicked");
+              handleImg(e);
+            }}
             className="form__img__input"
           />
           {img && (

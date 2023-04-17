@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { Remove } from "@mui/icons-material";
-function EventScheduleForm() {
-  const [schedules, setSchedules] = useState([]);
+function EventScheduleForm({ schedules, onSchdule, onDelete }) {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
   const [details, setDetails] = useState("");
-
-  function handleInputCh(event) {
-    setInputValue(event.target.value);
-  }
 
   function handleTitle(e) {
     setTitle(e.target.value);
@@ -21,14 +16,11 @@ function EventScheduleForm() {
   }
   function handleAddSchedule() {
     if (title && time) {
-      setSchedules([
-        ...schedules,
-        {
-          title,
-          time,
-          details,
-        },
-      ]);
+      onSchdule({
+        title,
+        time,
+        details,
+      });
       setTitle("");
       setTime("");
       setDetails("");
@@ -36,9 +28,7 @@ function EventScheduleForm() {
   }
 
   function handleDeleteSchedule(index) {
-    const newSchedules = [...schedules];
-    newSchedules.splice(index, 1);
-    setSchedules(newSchedules);
+    onDelete(index);
   }
 
   return (

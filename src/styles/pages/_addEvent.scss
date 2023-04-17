@@ -21,6 +21,13 @@
       gap: 2rem;
     }
   }
+  &__step__error {
+    background-color: $color-error-bg;
+    color: $color-error;
+    padding: 0.5rem 1.5rem;
+    margin-top: 2rem;
+    font-weight: 400;
+  }
   &__step__details {
     position: relative;
     background-color: $color-white;
@@ -38,6 +45,7 @@
       padding: 1rem;
     }
   }
+
   &__step__btns {
     margin-top: 2rem;
     position: absolute;

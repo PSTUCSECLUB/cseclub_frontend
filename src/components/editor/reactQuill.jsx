@@ -1,3 +1,4 @@
+import { jsx } from "@emotion/react";
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -30,17 +31,30 @@ const formats = [
   "image",
 ];
 
-export default function QuillEditor() {
-  const [value, setValue] = useState("");
-
-  console.log(value);
+export default function QuillEditor({ quillRef }) {
+  const [value, setValue] = useState(getValueFromStorage());
   return (
     <ReactQuill
       modules={modules}
       formats={formats}
       theme="snow"
       value={value}
-      onChange={setValue}
+      ref={quillRef}
+      onChange={(val) => {
+        setValue(val);
+        if (val.length > 10) {
+          saveValueInStorage(val);
+        }
+      }}
     />
   );
+}
+
+function saveValueInStorage(val) {
+  sessionStorage.setItem("quillValue", JSON.stringify(val));
+}
+export function getValueFromStorage() {
+  return JSON.parse(sessionStorage.getItem("quillValue"))
+    ? JSON.parse(sessionStorage.getItem("quillValue"))
+    : "";
 }

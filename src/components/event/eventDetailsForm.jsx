@@ -1,8 +1,16 @@
 import React from "react";
-import Editor from "../editor";
 import Autosuggestion from "../autosuggestion";
 
-export default function EventDetailsForm() {
+export default function EventDetailsForm({
+  title,
+  onTitle,
+  shortDescription,
+  onShortDescription,
+  parentValue,
+  onParentChange,
+  suggestedOptions,
+  onOptionclick,
+}) {
   return (
     <div className="event-details-form">
       <div className="form__controls">
@@ -11,6 +19,8 @@ export default function EventDetailsForm() {
           id="title"
           name="title"
           type="text"
+          value={title}
+          onChange={onTitle}
           placeholder="Write title here"
           className="form__input-text"
         />
@@ -21,13 +31,20 @@ export default function EventDetailsForm() {
           id="shortDescription"
           name="shortDescription"
           type="text"
+          value={shortDescription}
+          onChange={onShortDescription}
           placeholder="Short descriptions should be short"
           className="form__textarea"
         ></textarea>
       </div>
       <div className="form__controls">
         <label htmlFor="shortDescription">Select Parent Event</label>
-        <Autosuggestion />
+        <Autosuggestion
+          value={parentValue}
+          handleInputChange={onParentChange}
+          handleOptionClick={onOptionclick}
+          suggestedOptions={suggestedOptions}
+        />
       </div>
     </div>
   );
