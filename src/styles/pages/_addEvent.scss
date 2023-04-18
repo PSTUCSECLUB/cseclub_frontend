@@ -3,7 +3,7 @@
   }
   &__wrapper {
     background-color: $color-white;
-    padding: 5rem 0;
+    padding: 3rem 0 5rem 0;
     width: 80%;
     margin: auto;
     margin-top: 5rem;
@@ -20,6 +20,9 @@
       width: 96%;
       gap: 2rem;
     }
+  }
+  &__stepper {
+    margin-top: 3rem;
   }
   &__step__error {
     background-color: $color-error-bg;
@@ -73,4 +76,12 @@
       right: 0rem;
     }
   }
+}
+
+.event-save-and-preview {
+  width: 100%;
+  min-height: 40rem;
+  @include flexCenter;
+  flex-direction: column;
+  gap: 1rem;
 }

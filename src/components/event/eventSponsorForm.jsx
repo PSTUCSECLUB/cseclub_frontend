@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Remove, AddPhotoAlternate, CheckCircle } from "@mui/icons-material";
+import Image from "next/image";
 function EventSponsorForm({ sponsors, onAdd, onDelete }) {
   const [name, setName] = useState("");
   const [site, setSite] = useState("");
@@ -72,6 +73,14 @@ function EventSponsorForm({ sponsors, onAdd, onDelete }) {
               </span>
             </div>
           )}
+          {img && (
+            <Image
+              src={URL.createObjectURL(img)}
+              width={40}
+              height={40}
+              alt="img"
+            />
+          )}
         </div>
       </div>
       <button className="schedule__btn" onClick={handleAddSponsor}>
@@ -79,8 +88,22 @@ function EventSponsorForm({ sponsors, onAdd, onDelete }) {
       </button>
       <ul className="schedule__list">
         {sponsors.map((sponsor, index) => (
-          <li className="schedule__list__item" key={index}>
+          <li
+            style={{
+              flexDirection: "row",
+              alignContent: "center",
+              gap: "10px",
+            }}
+            className="schedule__list__item"
+            key={index}
+          >
             <span className="schedule__list__item__title">{sponsor.name}</span>
+            <Image
+              src={URL.createObjectURL(sponsor.img)}
+              width={40}
+              height={40}
+              alt="img"
+            />
             <button
               className="schedule__delete__btn"
               onClick={() => handleDeleteSponsor(index)}

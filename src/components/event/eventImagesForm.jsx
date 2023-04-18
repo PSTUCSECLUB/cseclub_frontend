@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Image from "next/image";
 function EventImagesForm({
   img,
   coverImgLand,
@@ -25,11 +26,19 @@ function EventImagesForm({
         />
         {img && (
           <div className="event-images-form__success">
-            <CheckCircleIcon htmlColor="#6a4bc5" fontSize="medium" />
+            <CheckCircleIcon htmlColor="#6a4bc5" fontSize="large" />
             <span className="event-images-form__success__label">
               Event image is selected successfully
             </span>
           </div>
+        )}
+        {img && (
+          <Image
+            src={URL.createObjectURL(img)}
+            width={100}
+            height={80}
+            alt="img"
+          />
         )}
       </div>
       <div className="form__controls">
@@ -53,6 +62,14 @@ function EventImagesForm({
             </span>
           </div>
         )}
+        {coverImgLand && (
+          <Image
+            src={URL.createObjectURL(coverImgLand)}
+            width={140}
+            height={80}
+            alt="coverImgLand"
+          />
+        )}
       </div>
       <div className="form__controls">
         <label htmlFor="coverImagePort">
@@ -74,6 +91,14 @@ function EventImagesForm({
               Event cover portrait photo is selected successfully
             </span>
           </div>
+        )}
+        {coverImgPort && (
+          <Image
+            src={URL.createObjectURL(coverImgPort)}
+            width={40}
+            height={80}
+            alt="coverImgPort"
+          />
         )}
       </div>
     </div>

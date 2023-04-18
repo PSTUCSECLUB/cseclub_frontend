@@ -2,44 +2,53 @@ import ExecutiveCard from "@/components/cards/executiveCard";
 import Editor from "@/components/editor";
 import EventDetailsForm from "@/components/event/eventDetailsForm";
 import EventImagesForm from "@/components/event/eventImagesForm";
+import EventSaveAndPreview from "@/components/event/eventSavePreview";
 import EventScheduleForm from "@/components/event/eventScheduleForm";
 import EventSponsorForm from "@/components/event/eventSponsorForm";
 import Stepper from "@/components/stepper";
+import StepSwitcher from "@/components/stepper/stepSwitcher";
 import Head from "next/head";
 import { useRef, useState } from "react";
 
-const steps = [
-  { value: "Provide Details" },
+const initialSteps = [
+  { title: "Provide Details", validated: false, no: 1 },
   {
-    value: "Provide Contents",
+    title: "Contents",
+    validated: false,
+    no: 2,
   },
-  { value: "Provide Images" },
-  { value: "Provide Schedules" },
-  { value: "Provide Sponsor" },
-  { value: "Preview & Save" },
+  { title: "Images", validated: false, no: 3 },
+  { title: "Schedules", validated: false, no: 4 },
+  { title: "Sponsor", validated: false, no: 5 },
+  { title: "Preview & Save", validated: false, no: 6 },
 ];
 const options = [
-  "It Carnival",
-  "Gaming",
-  "cherry",
-  "date",
-  "elderberry",
-  "fig",
-  "grape",
+  {
+    id: "234d32",
+    title: "It Carnival",
+  },
+  {
+    id: "83def2",
+    title: "Gaming",
+  },
 ];
 
 function getSuggestions(userInput) {
-  const filteredOptions = options.filter((option) =>
-    option.toLowerCase().startsWith(userInput.toLowerCase())
-  );
+  const filteredOptions = options
+    .filter((option) =>
+      option.title.toLowerCase().startsWith(userInput.toLowerCase())
+    )
+    .map((option) => option.title);
   return filteredOptions;
 }
 export default function AddEvent() {
+  const [steps, setSteps] = useState(initialSteps);
   const [currentStep, setCurrentStep] = useState(1);
   // first step
   const [title, setTitle] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [parent, setParent] = useState("");
+  const [parentId, setParentId] = useState("");
   const [suggestedOptions, setSuggestedOptions] = useState([]);
 
   // second step
@@ -59,7 +68,6 @@ export default function AddEvent() {
 
   const [validateError, setValidateError] = useState("There is a error");
 
-  console.log(schedules);
   function onTitleChange(e) {
     setTitle(e.target.value);
   }
@@ -124,24 +132,38 @@ export default function AddEvent() {
     newSponsors.splice(index, 1);
     setSponsors(newSponsors);
   }
+
+  function updateStepsValidate(step, value) {
+    const updatedSteps = steps.map((s) => {
+      if (s.no === step) {
+        s.validated = value;
+      }
+      return s;
+    });
+    setSteps(updatedSteps);
+  }
   function validateStep(step) {
     if (step === 1) {
       if (!title || !shortDescription) {
         setValidateError(
           "please provide title and shortdescription in order to procced next!"
         );
+        updateStepsValidate(step, false);
         return false;
       } else {
         setValidateError("");
+        updateStepsValidate(step, true);
         return true;
       }
     }
     if (step === 2) {
       if (!description) {
         setValidateError("please provide desciption in order to precced next!");
+        updateStepsValidate(step, false);
         return false;
       } else {
         setValidateError("");
+        updateStepsValidate(step, true);
         return true;
       }
     }
@@ -150,12 +172,15 @@ export default function AddEvent() {
         setValidateError(
           "please provide image , landscape and portrait cover imgs to procced next!"
         );
+        updateStepsValidate(step, false);
         return false;
       } else {
         setValidateError("");
+        updateStepsValidate(step, true);
         return true;
       }
     }
+    updateStepsValidate(step, true);
     return true;
   }
 
@@ -201,7 +226,23 @@ export default function AddEvent() {
           sponsors={sponsors}
         />
       );
-    if (step === 6) return <h1>Preview and Save</h1>;
+    if (step === 6) return <EventSaveAndPreview event={getEvent()} />;
+  }
+
+  function getEvent() {
+    let event = {
+      _id: Math.random() * 1000 + "2ekfkde" + Date.now() + "",
+      title,
+      shortDescription,
+      description,
+      schedules,
+      sponsors,
+      img: URL.createObjectURL(img),
+      coverImgLand: URL.createObjectURL(coverImgLand),
+      coverImgPort: URL.createObjectURL(coverImgPort),
+    };
+
+    return event;
   }
   return (
     <>
@@ -214,7 +255,10 @@ export default function AddEvent() {
       <div>
         <div className="addevent__page">
           <div className="addevent__wrapper">
-            <Stepper step={currentStep} steps={steps} />
+            <StepSwitcher setStep={setCurrentStep} steps={steps} />
+            <div className="addevent__stepper">
+              <Stepper step={currentStep} steps={steps} />
+            </div>
             <div className="addevent__step__details">
               {chooseComp(currentStep)}
               {validateError && (
@@ -238,6 +282,7 @@ export default function AddEvent() {
                         if (editorRef.current.value) {
                           setDescription(editorRef.current.value);
                           setCurrentStep(currentStep + 1);
+                          updateStepsValidate(2, true);
                           return;
                         }
                       }

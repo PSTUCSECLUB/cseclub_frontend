@@ -6,7 +6,7 @@ export default function Stepper({ steps = [], step }) {
       {steps.length > 0 ? (
         <div className="stepper__top__wrapper">
           <span className="stepper__label"> Step {step} - </span>
-          <span className="stepper__value">{steps[step - 1].value}</span>
+          <span className="stepper__value">{steps[step - 1].title}</span>
         </div>
       ) : (
         <p>Please provide steps</p>
