@@ -177,6 +177,7 @@ export default function AddEvent() {
       } else {
         setValidateError("");
         updateStepsValidate(step, true);
+        updateStepsValidate(6, true);
         return true;
       }
     }
@@ -198,7 +199,22 @@ export default function AddEvent() {
           onOptionclick={onOptionsClick}
         />
       );
-    if (step === 2) return <Editor ref={editorRef} />;
+    if (step === 2)
+      return (
+        <div className="addevent__page__editor">
+          <button
+            onClick={() => {
+              if (editorRef.current.value) {
+                setDescription(editorRef.current.value);
+              }
+            }}
+            className="addevent__page__editor__save-btn"
+          >
+            Save
+          </button>
+          <Editor ref={editorRef} />
+        </div>
+      );
     if (step === 3)
       return (
         <EventImagesForm
@@ -255,7 +271,11 @@ export default function AddEvent() {
       <div>
         <div className="addevent__page">
           <div className="addevent__wrapper">
-            <StepSwitcher setStep={setCurrentStep} steps={steps} />
+            <StepSwitcher
+              excepts={[6]}
+              setStep={setCurrentStep}
+              steps={steps}
+            />
             <div className="addevent__stepper">
               <Stepper step={currentStep} steps={steps} />
             </div>

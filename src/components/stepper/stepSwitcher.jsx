@@ -2,7 +2,7 @@ import React from "react";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import CheckIcon from "@mui/icons-material/Check";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
-export default function StepSwitcher({ steps, setStep }) {
+export default function StepSwitcher({ steps, setStep, excepts = [] }) {
   const handleClick = (step) => {
     // is Previous step is validated
     let isPrevValidated = true;
@@ -14,7 +14,7 @@ export default function StepSwitcher({ steps, setStep }) {
         }
       }
     });
-
+    if (excepts.includes(step.no)) isPrevValidated = true;
     if (isPrevValidated && step.validated) {
       setStep(step.no);
       return;

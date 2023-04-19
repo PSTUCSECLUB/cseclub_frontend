@@ -1,7 +1,7 @@
 import Schedule from "@/components/schedule";
 import Head from "next/head";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { events } from "@/data/eventsData";
 import parse from "html-react-parser";
@@ -9,9 +9,14 @@ import { useRouter } from "next/router";
 
 export default function Event() {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
+  let [isMobile, setIsMobile] = useState(false);
   const [event, setEvent] = useState(events[0]);
 
   const router = useRouter();
+
+  useEffect(() => {
+    setIsMobile(window.screen.width <= 600);
+  }, [isMobile]);
 
   return (
     <>
@@ -24,18 +29,17 @@ export default function Event() {
       <div className="event">
         <div className="event__coverimg__wrapper">
           {" "}
-          {!isTabletOrMobile && (
-            <Image
-              className="event__coverimg"
-              src={event.coverImg}
-              alt="event cover image"
-              fill
-            />
-          )}
-          {isTabletOrMobile && (
+          {isMobile && isTabletOrMobile ? (
             <Image
               className="event__coverimg"
               src={event.img}
+              alt="event cover image"
+              fill
+            />
+          ) : (
+            <Image
+              className="event__coverimg"
+              src={event.coverImg}
               alt="event cover image"
               fill
             />

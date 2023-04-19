@@ -24,6 +24,7 @@ function EventImagesForm({
           onChange={handleImgChange}
           className="form__img__input"
         />
+        <span>Image resolution should be 400 x 250</span>
         {img && (
           <div className="event-images-form__success">
             <CheckCircleIcon htmlColor="#6a4bc5" fontSize="large" />
@@ -35,8 +36,8 @@ function EventImagesForm({
         {img && (
           <Image
             src={URL.createObjectURL(img)}
-            width={100}
-            height={80}
+            width={80}
+            height={50}
             alt="img"
           />
         )}
@@ -54,6 +55,7 @@ function EventImagesForm({
           onChange={handleCoverLandChange}
           className="form__img__input"
         />
+        <span>Image resolution should be 1530 x 540</span>
         {coverImgLand && (
           <div className="event-images-form__success">
             <CheckCircleIcon htmlColor="#6a4bc5" fontSize="medium" />
@@ -65,8 +67,8 @@ function EventImagesForm({
         {coverImgLand && (
           <Image
             src={URL.createObjectURL(coverImgLand)}
-            width={140}
-            height={80}
+            width={141.6}
+            height={50}
             alt="coverImgLand"
           />
         )}
@@ -84,6 +86,7 @@ function EventImagesForm({
           onChange={handleCoverPortChange}
           className="form__img__input"
         />
+        <span>Image resolution should be 370 x 416</span>
         {coverImgPort && (
           <div className="event-images-form__success">
             <CheckCircleIcon htmlColor="#6a4bc5" fontSize="medium" />
@@ -95,8 +98,8 @@ function EventImagesForm({
         {coverImgPort && (
           <Image
             src={URL.createObjectURL(coverImgPort)}
-            width={40}
-            height={80}
+            width={50}
+            height={56.21}
             alt="coverImgPort"
           />
         )}

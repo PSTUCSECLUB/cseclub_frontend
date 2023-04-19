@@ -9,9 +9,9 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 
 const styles = [
-  { background: "#4fa16c", color: "#fff" },
-  { background: "rgb(242, 153, 74)", color: "#fff" },
-  { background: "rgb(236, 3, 141)", color: "#fff" },
+  { background: "#fff", color: "#4fa16c" },
+  { background: "#fff", color: "rgb(242, 153, 74)" },
+  { background: "#fff", color: "rgb(236, 3, 141)" },
 ];
 
 const icons = ["hour", "play", "view"];
@@ -26,19 +26,19 @@ export default function Schedule({ schedules = [] }) {
       {schedules.length > 0 && (
         <div className="schedule">
           <h3 className="schedule__title">Schedule</h3>
-          <VerticalTimeline lineColor="gray">
+          <VerticalTimeline>
             {schedules.map((s, i) => {
+              let randomStyle =
+                styles[Math.floor(Math.random() * styles.length)];
               return (
                 <VerticalTimelineElement
                   key={i}
                   className="vertical-timeline-element--work"
-                  contentStyle={
-                    styles[Math.floor(Math.random() * styles.length)]
-                  }
+                  contentStyle={randomStyle}
                   contentArrowStyle={{
-                    borderRight: "7px solid  rgb(33, 150, 243)",
+                    borderRight: "7px solid  #fff",
                   }}
-                  iconStyle={styles[Math.floor(Math.random() * styles.length)]}
+                  iconStyle={randomStyle}
                   icon={
                     iconsMap[icons[Math.floor(Math.random() * icons.length)]]
                   }

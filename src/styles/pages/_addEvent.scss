@@ -1,5 +1,17 @@
 .addevent {
   &__page {
+    &__editor {
+      position: relative;
+      &__save-btn {
+        position: absolute;
+        right: 0;
+        padding: 1.6rem 1.6rem;
+        background: $color-secondary;
+        border: none;
+        cursor: pointer;
+        color: $color-white;
+      }
+    }
   }
   &__wrapper {
     background-color: $color-white;

@@ -3,7 +3,7 @@
     object-fit: cover;
     &__wrapper {
       position: relative;
-      height: 48rem;
+      height: 54rem;
       width: 100%;
       margin: auto;
       position: relative;
@@ -34,6 +34,7 @@
     }
 
     &__title {
+      color: $color-primary-dark;
       font-size: 3.2rem;
       font-weight: 700;
       margin-bottom: 2rem;
@@ -114,6 +115,7 @@
     width: 80%;
     margin: auto;
     margin-top: 5rem;
+    margin-bottom: 5rem;
     @include respond(tab-land) {
       width: 86%;
     }
@@ -121,18 +123,18 @@
       width: 92%;
     }
 
-    h3 {
+    h1 {
       font-size: 3.2rem;
       font-weight: 700;
-      margin-bottom: 2rem;
       text-transform: capitalize;
       line-height: 1.2;
+      color: $color-primary-dark;
       @include respond(phone) {
         font-size: 2.6rem;
       }
     }
 
-    h4 {
+    h2 {
       font-size: 2.4rem;
       font-weight: 400;
       margin-bottom: 2rem;
@@ -143,32 +145,76 @@
     p,
     ul,
     ol {
-      margin-bottom: 10rem;
     }
     p {
       font-size: 2rem;
       font-weight: 400;
     }
+    p:has(> br) {
+      /* CSS styles for the selected paragraph */
+      line-height: 1;
+    }
+
+    // strike through
+    s {
+      color: rgba($color: $color-gray, $alpha: 0.3);
+    }
+    // blogqutoes
+    blockquote {
+      background: rgba($color: $color-primary-dark, $alpha: 0.1);
+      font-size: 3.2rem;
+      color: $color-primary-light;
+      width: 60%;
+      font-style: italic;
+      border-left: 1rem solid $color-primary-light;
+      @include respond(phone) {
+        font-size: 2.6rem;
+        border-left: 0.5rem solid $color-primary-light;
+      }
+    }
+    blockquote::before {
+      content: open-quote;
+    }
+    blockquote::after {
+      content: close-quote;
+    }
+    blockquote {
+      quotes: "“" "”" "‘" "’";
+    }
+    a {
+      // later will be styled
+    }
     ol,
     ul {
-      margin-left: 7rem;
-
       text-align: left;
       font-size: 2rem;
+      width: 60%;
+      margin: auto;
       li {
-        margin-bottom: 1rem;
+        // margin-bottom: 0.5rem;
         font-weight: 400;
       }
       @include respond(phone) {
-        margin-left: 2rem;
+        margin-left: 5rem;
       }
+    }
+    ul {
+      list-style: none; /* Remove default bullets */
+    }
+
+    ul li::before {
+      content: "\2022";
+      color: $color-primary-light;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
     }
     a {
     }
     img {
       width: 100%;
-
-      margin-bottom: 1rem;
+      object-fit: cover;
     }
     img + h4 {
       text-align: center;

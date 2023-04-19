@@ -88,7 +88,8 @@ export const events = [
         img: "/images/event/event_img.png",
       },
     ],
-    description: ` <h3>Description:</h3>
+    description: ` <h1>Description:</h1>
+    <p><br/></p>
     <p>
       SWE Society, SUST will host “Brain Station 23 Hackathon” which
       will be a 36 hour long collaborative programming contest to build
