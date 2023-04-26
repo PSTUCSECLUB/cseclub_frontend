@@ -33,7 +33,6 @@ function EventScheduleForm({ schedules, onSchdule, onDelete }) {
 
   return (
     <div className="schedule__form">
-      <h2 style={{ marginBottom: "1rem" }}>Event Schedules</h2>
       <div className="schedule__inputs">
         <input
           type="text"
@@ -57,6 +56,7 @@ function EventScheduleForm({ schedules, onSchdule, onDelete }) {
       <button className="schedule__btn" onClick={handleAddSchedule}>
         Add Schedule
       </button>
+      <h2 style={{ marginTop: "3rem", textAlign: "center" }}>Schedules</h2>
       <ul className="schedule__list">
         {schedules.map((schedule, index) => (
           <li className="schedule__list__item" key={index}>

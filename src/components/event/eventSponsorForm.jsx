@@ -36,7 +36,6 @@ function EventSponsorForm({ sponsors, onAdd, onDelete }) {
 
   return (
     <div className="sponsors__form">
-      <h2 style={{ marginBottom: "1rem" }}>Event Sponsors</h2>
       <div className="sponsors__inputs">
         <input
           type="text"
@@ -86,6 +85,7 @@ function EventSponsorForm({ sponsors, onAdd, onDelete }) {
       <button className="schedule__btn" onClick={handleAddSponsor}>
         Add Sponsor
       </button>
+      <h2 style={{ marginTop: "3rem", textAlign: "center" }}>Sponsors</h2>
       <ul className="schedule__list">
         {sponsors.map((sponsor, index) => (
           <li

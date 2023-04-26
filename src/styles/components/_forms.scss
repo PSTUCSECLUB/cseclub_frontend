@@ -129,9 +129,9 @@
   }
   &__delete__btn {
     position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-
+    right: 0.1rem;
+    top: -0.6rem;
+    background: $color-gray;
     border: none;
     cursor: pointer;
     background: transparent;
@@ -140,7 +140,7 @@
     list-style: none;
     background-color: $color-white-light;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem 3rem;
     margin-top: 2rem;

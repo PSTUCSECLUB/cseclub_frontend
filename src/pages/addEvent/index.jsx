@@ -242,7 +242,13 @@ export default function AddEvent() {
           sponsors={sponsors}
         />
       );
-    if (step === 6) return <EventSaveAndPreview event={getEvent()} />;
+    if (step === 6)
+      return (
+        <EventSaveAndPreview
+          event={getEvent()}
+          formEvent={getEventFormData()}
+        />
+      );
   }
 
   function getEvent() {
@@ -259,6 +265,41 @@ export default function AddEvent() {
     };
 
     return event;
+  }
+
+  function getEventFormData() {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("shortDescription", shortDescription);
+    formData.append("description", description);
+
+    // Assuming `schedules` is an array, you can append each schedule as a separate field
+    // for (let i = 0; i < schedules.length; i++) {
+    //   formData.append(`schedules[${i}].title`, schedules[i].title);
+    //   formData.append(`schedules[${i}].time`, schedules[i].time);
+    //   formData.append(`schedules[${i}].details`, schedules[i].details);
+    // }
+    formData.append("schedules", JSON.stringify(schedules));
+
+    // handling sponsors
+    let sponsorImgs = [];
+    let filteredSponsors = [];
+    for (let i = 0; i < sponsors.length; i++) {
+      let sponsor = {};
+      sponsor.name = sponsors[i].name;
+      sponsor.site = sponsors[i].site;
+      filteredSponsors.push(sponsor);
+      formData.append("sponsorImg", sponsors[i].img);
+    }
+
+    // Apend sponsors images here
+    formData.append("sponsors", JSON.stringify(filteredSponsors));
+
+    // Append the image files to the form data
+    formData.append("image", img);
+    formData.append("coverImgLand", coverImgLand);
+    formData.append("coverImgPort", coverImgPort);
+    return formData;
   }
   return (
     <>

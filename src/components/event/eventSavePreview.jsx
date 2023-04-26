@@ -4,11 +4,11 @@ import EventSave from "./eventSave";
 import { events } from "@/data/eventsData";
 
 // styles @_addEvent.scss
-export default function EventSaveAndPreview({ event }) {
+export default function EventSaveAndPreview({ event, formEvent }) {
   return (
     <div className="event-save-and-preview">
       <EventPreview event={event} />
-      <EventSave />
+      <EventSave event={formEvent} />
     </div>
   );
 }
