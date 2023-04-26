@@ -22,7 +22,7 @@ export default function AdminLeftBar({
       }`}
     >
       <button onClick={handleExpand} className="admin__leftbar__exp-btn">
-        {expanded ? "<" : ">"}
+        {expanded ? "<<" : ">>"}
       </button>
       <ul className="admin__leftbar__list">
         <li className="admin__leftbar__list__item">

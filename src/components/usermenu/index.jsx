@@ -36,7 +36,7 @@ export default function Usermenu() {
           </div>
           <div className="usermenu__card__actions">
             <button className="usermenu__card__btn">
-              <ExitToAppIcon fontSize="large" />
+              <ExitToAppIcon fontSize="medium" />
               Sign out
             </button>
           </div>
