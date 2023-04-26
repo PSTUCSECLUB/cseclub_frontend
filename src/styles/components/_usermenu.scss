@@ -1,0 +1,56 @@
+.usermenu {
+  position: relative;
+  &__avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    border: none;
+    @include flexCenter;
+    cursor: pointer;
+  }
+  &__img {
+  }
+  &__card {
+    background: $color-white-light;
+    position: absolute;
+    top: 6rem;
+    right: 0rem;
+    padding: 2rem;
+    width: 16rem;
+    @include flexCenter;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    gap: 1rem;
+    &__img {
+      border-radius: 50%;
+      object-fit: cover;
+      &__wrapper {
+        position: relative;
+        height: 7rem;
+        width: 7rem;
+      }
+    }
+    &__descriptions {
+      @include flexCenter;
+      flex-direction: column;
+    }
+    &__actions {
+      display: flex;
+      justify-content: space-around;
+    }
+    &__title {
+    }
+    &__subtitle {
+      font-size: 1.4rem;
+    }
+    &__btn {
+      @include flexCenter;
+      gap: 0.5rem;
+      padding: 0.3rem 0.5rem;
+      cursor: pointer;
+      font: inherit;
+      font-size: 1.4rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,120 @@
+.admin {
+  position: relative;
+  &__topbar {
+    height: 6rem;
+    background-color: $color-white;
+    // box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    &__left {
+      display: flex;
+      gap: 2rem;
+    }
+    &__title {
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+  }
+  &__leftbar {
+    position: fixed;
+    top: 6.1rem;
+    width: 26rem;
+    height: calc(100vh - 6rem);
+    background-color: $color-white;
+    transition: all 0.1s ease-out;
+    @include respond(phone-sm) {
+      width: 20rem;
+    }
+    &__exp-btn {
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      right: 1rem;
+      top: -0.5rem;
+      font-weight: bold;
+      line-height: 1;
+      color: $color-gray;
+      cursor: pointer;
+      font: inherit;
+      font-size: 2.4rem;
+    }
+    &__selected__btn {
+      background-color: $color-primary-light !important;
+      color: $color-white !important;
+    }
+    &__list {
+      margin-top: 3.5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      &__item {
+        margin: 0 0.5rem;
+      }
+      &__btn {
+        font: inherit;
+        font-weight: 400;
+        color: $color-primary-light;
+        background-color: transparent;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        cursor: pointer;
+        border: 1px solid $color-white-light;
+        width: 100%;
+        padding: 1rem;
+        justify-content: center;
+        border-radius: 0.5rem;
+        gap: 1rem;
+        &--collapse {
+          .admin__leftbar__list__btn__label {
+            display: none;
+          }
+        }
+        &__icon {
+          @include flexCenter;
+        }
+      }
+    }
+    &--collapse {
+      width: 8rem;
+      .admin__left__list__item__btn {
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  &__comps {
+    position: absolute;
+    top: 6rem;
+    left: 26rem;
+    width: calc(100vw - 26rem);
+    transition: all 0.1s ease-out;
+    @include respond(phone-sm) {
+      left: 20rem;
+      width: calc(100vw - 20rem);
+    }
+    &--collapse {
+      left: 8rem;
+      width: calc(100vw - 8rem);
+    }
+  }
+  &__cover {
+    height: 30vh;
+    width: 100%;
+
+    background: $color-primary-light;
+    @include flexCenter;
+    &__title {
+      color: $color-white;
+      font-size: 3.6rem;
+    }
+  }
+}
