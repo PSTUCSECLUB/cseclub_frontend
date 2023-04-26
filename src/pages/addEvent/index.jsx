@@ -33,14 +33,6 @@ const options = [
   },
 ];
 
-function getSuggestions(userInput) {
-  const filteredOptions = options
-    .filter((option) =>
-      option.title.toLowerCase().startsWith(userInput.toLowerCase())
-    )
-    .map((option) => option.title);
-  return filteredOptions;
-}
 export default function AddEvent() {
   const [steps, setSteps] = useState(initialSteps);
   const [currentStep, setCurrentStep] = useState(1);
@@ -76,6 +68,14 @@ export default function AddEvent() {
     setShortDescription(e.target.value);
   }
 
+  function getSuggestions(userInput) {
+    const filteredOptions = options
+      .filter((option) =>
+        option.title.toLowerCase().startsWith(userInput.toLowerCase())
+      )
+      .map((option) => option.title);
+    return filteredOptions;
+  }
   function onParentChange(e) {
     const input = e.currentTarget.value;
     if (input !== "") {

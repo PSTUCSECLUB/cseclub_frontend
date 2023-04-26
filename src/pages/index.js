@@ -1,3 +1,4 @@
+import { AdminProvider } from "@/contexts/adminContext";
 import Head from "next/head";
 
 export default function Home() {
@@ -9,10 +10,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1>Welcome to the PSTU CSE CLUB WEBSITE</h1>
-        <h3>This site is in development mode!</h3>
-      </main>
+      <AdminProvider>
+        <main>
+          <h1>Welcome to the PSTU CSE CLUB WEBSITE</h1>
+          <h3>This site is in development mode!</h3>
+        </main>
+      </AdminProvider>
     </>
   );
 }
