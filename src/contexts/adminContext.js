@@ -1,4 +1,6 @@
+import { getBlogs } from "@/actions/blog";
 import { getEvents } from "@/actions/event";
+import { getUsers } from "@/actions/user";
 import * as React from "react";
 
 const AdminContext = React.createContext();
@@ -13,7 +15,8 @@ const AdminContext = React.createContext();
 //     };
 
 const initialState = {
-  isLoading: false,
+  error: false,
+  loading: true,
   events: [],
   blogs: [],
   users: [],
@@ -22,10 +25,16 @@ const initialState = {
 function adminReducer(state, action) {
   switch (action.type) {
     case "start_loading": {
-      return { ...state, isLoading: true };
+      return { ...state, loading: true };
     }
-    case "get_event": {
-      return { ...state, isLoading: false, events: action.payload };
+    case "end_loading": {
+      return { ...state, loading: false };
+    }
+    case "error": {
+      return { ...state, error: true, loading: false };
+    }
+    case "get_events": {
+      return { ...state, events: action.payload, loading: false };
     }
     case "add_event": {
       return { ...state, events: [...state.events, action.payload] };
@@ -34,6 +43,25 @@ function adminReducer(state, action) {
       let afterDelete = state.events.filter((e) => e._id !== action.payload.id);
       return { ...state, events: afterDelete };
     }
+    case "get_blogs": {
+      return { ...state, blogs: action.payload, loading: false };
+    }
+    case "add_blog": {
+      return { ...state, blogs: [...state.blogs, action.payload] };
+    }
+    case "delete_blog": {
+      let afterDelete = state.blogs.filter((e) => e._id !== action.payload.id);
+      return { ...state, blogs: afterDelete };
+    }
+    case "get_users": {
+      return {
+        ...state,
+        isLoading: false,
+        users: action.payload,
+        loading: false,
+      };
+    }
+
     // case "update_event": {
     //   return { count: state.count - 1 };
     // }
@@ -48,8 +76,9 @@ function AdminProvider({ children }) {
   // NOTE: you *might* need to memoize this value
   // Learn more in http://kcd.im/optimize-context
   React.useEffect(() => {
-    dispatch({ type: "start_loading" });
     getEvents(dispatch);
+    getBlogs(dispatch);
+    getUsers(dispatch);
   }, []);
 
   const value = { state, dispatch };

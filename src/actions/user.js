@@ -9,24 +9,11 @@ const API = axios.create({
   },
 });
 
-export function postEvent(event) {
-  API.get("/events")
+export function getUsers(dispatch) {
+  API.get("/users")
     .then((response) => {
       // Handle success
-      console.log(response.data);
-      return [null, response.data];
-    })
-    .catch((error) => {
-      // Handle error
-      return [error, null];
-      console.error(error);
-    });
-}
-export function getEvents(dispatch) {
-  API.get("/events")
-    .then((response) => {
-      // Handle success
-      dispatch({ type: "get_events", payload: response.data.events });
+      dispatch({ type: "get_users", payload: response.data.users });
     })
     .catch((error) => {
       // Handle error

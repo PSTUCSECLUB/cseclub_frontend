@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import EventIcon from "@mui/icons-material/Event";
 import ArticleIcon from "@mui/icons-material/Article";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import { useMediaQuery } from "react-responsive";
 export default function AdminLeftBar({
   expanded,
   setExpanded,
   selectedTab,
   setSelectedTab,
 }) {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
+
   function handleExpand() {
-    setExpanded((expanded) => !expanded);
+    !isTabletOrMobile && setExpanded((expanded) => !expanded);
+    isTabletOrMobile && setExpanded(false);
   }
   function handleBtnClick(label) {
     setSelectedTab(label.toLowerCase());
@@ -21,9 +25,11 @@ export default function AdminLeftBar({
         !expanded && "admin__leftbar" + "--collapse"
       }`}
     >
-      <button onClick={handleExpand} className="admin__leftbar__exp-btn">
-        {expanded ? "<<" : ">>"}
-      </button>
+      {!isTabletOrMobile && (
+        <button onClick={handleExpand} className="admin__leftbar__exp-btn">
+          {expanded ? "<<" : ">>"}
+        </button>
+      )}
       <ul className="admin__leftbar__list">
         <li className="admin__leftbar__list__item">
           <ListButton

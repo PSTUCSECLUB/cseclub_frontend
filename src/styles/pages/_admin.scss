@@ -1,5 +1,54 @@
 .admin {
   position: relative;
+  &__loading {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    @include flexCenter;
+    &__wrapper {
+      padding: 2rem;
+      @include flexCenter;
+      flex-direction: column;
+    }
+    &__msg {
+      text-align: center;
+    }
+    &__spinner {
+    }
+  }
+  &__error {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    @include flexCenter;
+    &__wrapper {
+      padding: 2rem;
+      @include flexCenter;
+      flex-direction: column;
+    }
+    &__msg {
+      text-align: center;
+    }
+    &__img {
+    }
+    &__btn {
+      margin-top: 2rem;
+      font: inherit;
+      font-weight: 400;
+      color: $color-primary-light;
+      background-color: transparent;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background-color: $color-white;
+      cursor: pointer;
+      border: 1px solid $color-white-light;
+      width: 100%;
+      padding: 1rem;
+      justify-content: center;
+      border-radius: 0.5rem;
+    }
+  }
   &__topbar {
     height: 6rem;
     background-color: $color-white;
@@ -89,6 +138,9 @@
       .admin__left__list__item__btn {
         flex-wrap: wrap;
       }
+      @include respond(phone) {
+        width: 6rem;
+      }
     }
   }
 
@@ -105,6 +157,9 @@
     &--collapse {
       left: 8rem;
       width: calc(100vw - 8rem);
+      @include respond(phone) {
+        left: 6rem;
+      }
     }
   }
   &__cover {
@@ -177,6 +232,14 @@
       &--2 {
         background-color: $color-tirtiary;
       }
+    }
+  }
+  &__events {
+    padding: 3rem 2rem;
+    &__wrapper {
+      @include flexCenter;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
   }
 }

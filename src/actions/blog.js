@@ -9,24 +9,21 @@ const API = axios.create({
   },
 });
 
-export function postEvent(event) {
-  API.get("/events")
+export function postBlog(blog) {
+  API.get("/blogs")
     .then((response) => {
-      // Handle success
-      console.log(response.data);
       return [null, response.data];
     })
     .catch((error) => {
       // Handle error
       return [error, null];
-      console.error(error);
     });
 }
-export function getEvents(dispatch) {
-  API.get("/events")
+export function getBlogs(dispatch) {
+  API.get("/blogs")
     .then((response) => {
       // Handle success
-      dispatch({ type: "get_events", payload: response.data.events });
+      dispatch({ type: "get_blogs", payload: response.data.blogs });
     })
     .catch((error) => {
       // Handle error

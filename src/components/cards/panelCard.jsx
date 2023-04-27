@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
-export default function PanelCard({}) {
+export default function PanelCard({
+  imgUrl,
+  title,
+  extra,
+  handleAction = () => {},
+}) {
   const [showAlert, setShowAlert] = useState(false);
   const handleClickDefaultBtn = () => {
     setShowAlert(true);
@@ -15,15 +20,13 @@ export default function PanelCard({}) {
         <div className="panel-card__default__left">
           <Image
             className="panel-card__default__img"
-            src={"/images/blog/thumbnail.jpg"}
+            src={imgUrl}
             alt=""
-            width={80}
-            height={50}
+            width={60}
+            height={40}
           />
-          <h3 className="panel-card__default__title">Title should be here</h3>
-          <p className="panel-card__default__extra">
-            extra things will be here
-          </p>
+          <h3 className="panel-card__default__title">{title}</h3>
+          <p className="panel-card__default__extra">{extra}</p>
         </div>
         <div className="panel-card__default__right">
           <button
@@ -57,10 +60,18 @@ export default function PanelCard({}) {
           <p className="panel-card__alert__msg">Are you sure !</p>
         </div>
         <div className="panel-card__alert__right">
-          <button className="panel-card__alert__btn panel-card__alert__btn--primary">
+          <button
+            onClick={handleAction}
+            className="panel-card__alert__btn panel-card__alert__btn--primary"
+          >
             Yes
           </button>
-          <button className="panel-card__alert__btn panel-card__alert__btn--secondary">
+          <button
+            onClick={() => {
+              setShowAlert(false);
+            }}
+            className="panel-card__alert__btn panel-card__alert__btn--secondary"
+          >
             No
           </button>
         </div>
