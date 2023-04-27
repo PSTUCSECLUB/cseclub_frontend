@@ -207,8 +207,8 @@
   width: 50rem;
   padding: 2rem 3rem;
   border-radius: 0.5rem;
-  border: 1px solid $color-gray-light-2;
-  // background-color: rgba($color: $color-primary-light, $alpha: 0.1);
+  border: 2px solid $color-primary-light;
+  background-color: rgba($color: $color-secondary, $alpha: 0.1);
   @include respond(phone) {
     width: 100%;
   }
@@ -251,6 +251,7 @@
     background-color: transparent;
     font: inherit;
     cursor: pointer;
+    color: $color-error;
   }
   &__alert {
     position: absolute;

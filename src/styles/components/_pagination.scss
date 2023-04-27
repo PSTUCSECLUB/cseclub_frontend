@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  font-weight: 400;
+  gap: 1rem;
+  &__item {
+    cursor: pointer;
+    @include flexCenter;
+    min-width: 3rem;
+  }
+  &__disable {
+    color: $color-gray-light-2;
+  }
+  &__link {
+  }
+  &__active {
+    background-color: $color-primary-light;
+    color: $color-white;
+    border-radius: 50%;
+  }
+}
