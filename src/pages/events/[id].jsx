@@ -47,38 +47,10 @@ export default function Event() {
         </div>
 
         <main className="event__contents">
-          {event?.sponsors.length > 0 && (
-            <div className="event__sponsors">
-              <h3 className="event__sponsors__title">Sponsors</h3>
-              <div className="event__sponsors__wrapper">
-                {event?.sponsors.map((s, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className="event__sponsor"
-                      onClick={() => {
-                        s.site && router.push(s.site);
-                      }}
-                    >
-                      <div className="event__sponsor__img__wrapper">
-                        <Image
-                          className="event__sponsor__img"
-                          src={s.img}
-                          alt={s.name}
-                          fill
-                        />
-                      </div>
-                      <h6 className="event__sponsor__name">{s.name}</h6>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
           <article className="event__article">
             {parse(event.description)}
           </article>
+
           {event?.childs.length > 0 && (
             <div className="event__events">
               <h3 className="event__events__title">
@@ -119,6 +91,34 @@ export default function Event() {
           {event?.schedules.length > 0 && (
             <div className="event__schedule__wrapper">
               <Schedule schedules={event.schedules} />
+            </div>
+          )}
+          {event?.sponsors.length > 0 && (
+            <div className="event__sponsors">
+              <h3 className="event__sponsors__title">Sponsors</h3>
+              <div className="event__sponsors__wrapper">
+                {event?.sponsors.map((s, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="event__sponsor"
+                      onClick={() => {
+                        s.site && router.push(s.site);
+                      }}
+                    >
+                      <div className="event__sponsor__img__wrapper">
+                        <Image
+                          className="event__sponsor__img"
+                          src={s.img}
+                          alt={s.name}
+                          fill
+                        />
+                      </div>
+                      <h6 className="event__sponsor__name">{s.name}</h6>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
         </main>

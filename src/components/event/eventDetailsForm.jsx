@@ -7,9 +7,8 @@ export default function EventDetailsForm({
   shortDescription,
   onShortDescription,
   parentValue,
-  onParentChange,
-  suggestedOptions,
-  onOptionclick,
+  setParentValue,
+  options,
 }) {
   return (
     <div className="event-details-form">
@@ -41,9 +40,8 @@ export default function EventDetailsForm({
         <label htmlFor="shortDescription">Select Parent Event</label>
         <Autosuggestion
           value={parentValue}
-          handleInputChange={onParentChange}
-          handleOptionClick={onOptionclick}
-          suggestedOptions={suggestedOptions}
+          setValue={setParentValue}
+          options={options}
         />
       </div>
     </div>

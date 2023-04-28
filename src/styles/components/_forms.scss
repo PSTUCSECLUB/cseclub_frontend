@@ -62,11 +62,24 @@
     }
   }
   &__input-text {
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
+
     font: inherit;
+    font-size: 1.8rem;
+    font-weight: 300;
     border: none;
     outline: none;
-    border: 1px solid $color-gray-light-1;
+    border: 1px solid $color-gray-light-2;
+    transition: all 0.3s ease-out;
+    border-radius: 0.5rem;
+    &::placeholder {
+      color: $color-gray-light-1;
+    }
+    &:focus {
+      border: 1px solid $color-primary-light;
+      outline: 1px solid $color-primary-light;
+      box-shadow: 0.5px 0.5px 0.5px 1px rgba(75, 75, 75, 0.1);
+    }
   }
   &__textarea {
     padding: 1rem 1.5rem;
@@ -93,6 +106,22 @@
   }
   &__img__input {
     display: none;
+  }
+  &__create__btn {
+    background-color: $color-secondary;
+    color: $color-white;
+    border: none;
+    border-radius: 0.5rem;
+    font: inherit;
+    font-weight: 400;
+    @include flexCenter;
+
+    cursor: pointer;
+    padding: 0.7rem 1.5rem;
+    &__icon {
+      gap: 0.5rem;
+      @include flexCenter;
+    }
   }
 }
 

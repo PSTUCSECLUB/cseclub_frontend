@@ -1,3 +1,4 @@
+import AdminTopBar from "@/components/admin/adminTopBar";
 import ExecutiveCard from "@/components/cards/executiveCard";
 import Editor from "@/components/editor";
 import EventDetailsForm from "@/components/event/eventDetailsForm";
@@ -282,6 +283,7 @@ export default function AddEvent() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
+        <AdminTopBar />
         <div className="addevent__page">
           <div className="addevent__wrapper">
             <StepSwitcher

@@ -204,11 +204,11 @@
 
 .panel-card {
   position: relative;
-  width: 50rem;
-  padding: 2rem 3rem;
+  width: 100%;
+  padding: 1rem 2rem;
   border-radius: 0.5rem;
   border: 2px solid $color-primary-light;
-  background-color: rgba($color: $color-secondary, $alpha: 0.1);
+
   @include respond(phone) {
     width: 100%;
   }
@@ -251,7 +251,8 @@
     background-color: transparent;
     font: inherit;
     cursor: pointer;
-    color: $color-error;
+    color: $color-gray-dark;
+    @include flexCenter;
   }
   &__alert {
     position: absolute;

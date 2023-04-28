@@ -23,6 +23,7 @@
     "react-paginate": "^8.2.0",
     "react-quill": "^2.0.0",
     "react-responsive": "^9.0.2",
+    "react-select": "^5.7.2",
     "react-vertical-timeline-component": "^3.6.0",
     "sass": "^1.62.0"
   }

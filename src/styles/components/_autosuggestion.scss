@@ -1,0 +1,42 @@
+.autosuggestion {
+  position: relative;
+  &__input {
+    padding: 0.5rem 2rem;
+    font: inherit;
+    font-size: 1.6rem;
+    font-weight: 400;
+    outline: none;
+    border: 2px solid rgba($color: $color-gray, $alpha: 0.4);
+    border-radius: 2rem;
+    color: $color-gray;
+    transition: all 0.3s ease-out;
+    &:hover,
+    &:focus {
+      border: 2px solid $color-primary-light;
+    }
+  }
+  &__list {
+    position: absolute;
+    top: 5rem;
+    list-style: none;
+    z-index: 1000;
+    padding: 1rem;
+    width: 100%;
+    color: $color-white;
+    background-color: $color-primary-light;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    gap: 1rem;
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      cursor: pointer;
+      &__img {
+      }
+      &__label {
+      }
+    }
+  }
+}

@@ -51,7 +51,8 @@
   }
   &__topbar {
     height: 6rem;
-    background-color: $color-white;
+    background-color: rgba($color: $color-white, $alpha: 0.5);
+    backdrop-filter: blur(5px);
     // box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
@@ -91,14 +92,14 @@
       color: $color-gray;
       cursor: pointer;
       font: inherit;
-      font-size: 2.4rem;
+      font-size: 1.8rem;
     }
     &__selected__btn {
       background-color: $color-primary-light !important;
       color: $color-white !important;
     }
     &__list {
-      margin-top: 3.5rem;
+      margin-top: 2rem;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -163,6 +164,7 @@
     }
   }
   &__cover {
+    margin-top: 2.2rem;
     height: 20vh;
     width: 100%;
 
@@ -174,6 +176,7 @@
     }
   }
   &__tab {
+    width: 100%;
     min-height: 60vh;
     background: $color-white;
   }
@@ -184,8 +187,8 @@
       text-align: center;
       h1 {
         line-height: 1.2;
-        font-size: 2.4rem;
-        font-weight: 400;
+        font-size: 2rem;
+        font-weight: 300;
       }
     }
     &__cards {
@@ -239,14 +242,62 @@
   }
   &__events {
     padding: 3rem 2rem;
+    &__container {
+      width: 85%;
+      margin: auto;
+
+      @include respond(tab-port) {
+        width: 90%;
+      }
+      @include respond(phone) {
+        width: 96%;
+      }
+      @include respond(phone-sm) {
+        width: 100%;
+      }
+    }
+    &__actions {
+      margin-bottom: 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      @include respond(phone) {
+        flex-wrap: wrap;
+      }
+      &__left {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        @include respond(phone) {
+          flex-wrap: wrap;
+        }
+      }
+      &__right {
+      }
+    }
     &__paginate__wrapper {
       @include flexCenter;
       margin-top: 3rem;
     }
     &__wrapper {
-      @include flexCenter;
-      gap: 2rem;
-      flex-wrap: wrap;
+      // @include flexCenter;
+      // gap: 2rem;
+      // flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-top: 5rem;
+      @include respond(tab-land) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include respond(tab-port) {
+        grid-template-columns: 1fr;
+      }
+    }
+    &__filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3rem;
     }
   }
 }
