@@ -4,8 +4,10 @@ import PanelCard from "@/components/cards/panelCard";
 import Paginate from "@/components/paginate/paginate";
 import { useRouter } from "next/router";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import EventCard from "../cards/eventCard";
+import { useAdmin } from "@/contexts/adminContext";
 
 //option- id,title
 
@@ -13,8 +15,9 @@ const options = [
   { value: "2023", label: "2023" },
   { value: "2022", label: "2022" },
 ];
-export default function Events({ events, itemsPerPage = 8 }) {
-  const [processedEvents, setProcessedEvents] = useState(events);
+export default function Events({ itemsPerPage = 8 }) {
+  const { state } = useAdmin();
+  const [processedEvents, setProcessedEvents] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const [itemOffset, setItemOffset] = useState(0);
@@ -22,6 +25,10 @@ export default function Events({ events, itemsPerPage = 8 }) {
   const endOffset = itemOffset + itemsPerPage;
   const currentEvents = processedEvents.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(processedEvents.length / itemsPerPage);
+
+  useEffect(() => {
+    setProcessedEvents(state.events);
+  }, [state.events]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
@@ -45,11 +52,10 @@ export default function Events({ events, itemsPerPage = 8 }) {
   function processEvents(searchVal, date) {
     console.log(searchVal, date);
     if (searchVal === "" && !date) {
-      setProcessedEvents(events);
+      setProcessedEvents(state.events);
     } else {
-      debugger;
       // first find that fall into the year
-      let dateFiltered = events;
+      let dateFiltered = state.events;
       if (date) {
         const nextYear = new Date(String(Number(date) + 1));
 
@@ -105,14 +111,7 @@ export default function Events({ events, itemsPerPage = 8 }) {
         ) : (
           <div className="admin__events__wrapper">
             {currentEvents.map((e, i) => {
-              return (
-                <PanelCard
-                  key={i}
-                  title={e.title}
-                  imgUrl={e.image}
-                  extra={new Date(e.createdAt).toDateString()}
-                />
-              );
+              return <EventCard key={i} event={e} />;
             })}
           </div>
         )}

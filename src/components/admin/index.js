@@ -18,6 +18,7 @@ export default function Admin() {
   const [selectedTab, setSelectedTab] = useState("dashboard");
 
   const { dispatch, state } = useAdmin();
+  console.log("state in admin", state);
   const { error, loading, events, blogs, users } = state;
   function chooseComp(selectedTab) {
     if (selectedTab === "dashboard")

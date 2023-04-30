@@ -2,18 +2,26 @@ import Image from "next/image";
 import React, { useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-
+import StateBtn from "../button/stateBtn";
 export default function PanelCard({
   imgUrl,
   title,
   extra,
-  handleAction = () => {},
+  handleEdit = () => {},
+  handleDelete = () => {},
+  stateBtnLabel = "statebtn-label",
+  stateBtnState = "statebtn-state",
+  handleStateBtn = () => {},
 }) {
   const [showAlert, setShowAlert] = useState(false);
   const handleClickDefaultBtn = () => {
     setShowAlert(true);
   };
 
+  const handleDeleteClick = () => {
+    setShowAlert(false);
+    handleDelete();
+  };
   return (
     <div className="panel-card">
       <div className="panel-card__default">
@@ -29,8 +37,15 @@ export default function PanelCard({
           <p className="panel-card__default__extra">{extra}</p>
         </div>
         <div className="panel-card__default__right">
+          <StateBtn
+            handleAction={handleStateBtn}
+            state={stateBtnState}
+            label={stateBtnLabel}
+          />
           <button
-            onClick={handleClickDefaultBtn}
+            onClick={() => {
+              handleEdit();
+            }}
             className="panel-card__action-btn"
           >
             <ModeEditIcon fontSize="large" />
@@ -61,7 +76,7 @@ export default function PanelCard({
         </div>
         <div className="panel-card__alert__right">
           <button
-            onClick={handleAction}
+            onClick={handleDeleteClick}
             className="panel-card__alert__btn panel-card__alert__btn--primary"
           >
             Yes

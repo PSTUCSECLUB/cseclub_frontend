@@ -73,6 +73,8 @@ function adminReducer(state, action) {
 
 function AdminProvider({ children }) {
   const [state, dispatch] = React.useReducer(adminReducer, initialState);
+  console.log("in provider");
+  console.log(state.events);
   // NOTE: you *might* need to memoize this value
   // Learn more in http://kcd.im/optimize-context
   React.useEffect(() => {
@@ -83,7 +85,10 @@ function AdminProvider({ children }) {
 
   const value = { state, dispatch };
   return (
-    <AdminContext.Provider value={value}>{children}</AdminContext.Provider>
+    <AdminContext.Provider value={value}>
+      {children}
+      {console.log(state.events)}
+    </AdminContext.Provider>
   );
 }
 
