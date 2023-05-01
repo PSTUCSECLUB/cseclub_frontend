@@ -95,7 +95,7 @@ function AdminProvider({ children }) {
 function useAdmin() {
   const context = React.useContext(AdminContext);
   if (context === undefined) {
-    throw new Error("useCount must be used within a CountProvider");
+    throw new Error("useAdmin must be used within a AdminProvider");
   }
   return context;
 }

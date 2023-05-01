@@ -9,17 +9,31 @@ const API = axios.create({
   },
 });
 
-export function postEvent(event) {
-  API.get("/events")
+export function postEvent(
+  event,
+  parentId = "",
+  setLoading,
+  setError,
+  setSuccess
+) {
+  setLoading(true);
+  let query = parentId ? `?parentId=${parentId}` : "";
+  console.log(query);
+  API.post("/events" + query, event, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
     .then((response) => {
-      // Handle success
+      setLoading(false);
+      setSuccess(response.data.result._id);
+      setError(false);
       console.log(response.data);
-      return [null, response.data];
     })
     .catch((error) => {
-      // Handle error
-      return [error, null];
-      console.error(error);
+      setLoading(false);
+      setError(true);
+      console.log(error);
     });
 }
 export function getEvents(dispatch) {
@@ -71,5 +85,20 @@ export function deleteEvent(eventId, toast, dispatch) {
       toast("Failed to Delete");
       console.log(error);
       return { deleted: false };
+    });
+}
+
+export function getParentEvents(setParents, setLoading, setError) {
+  API.get("/events?fields=title,image,_id")
+    .then((response) => {
+      console.log(response.data.events);
+      // Handle success
+      setLoading(false);
+      setParents(response.data.events);
+    })
+    .catch((error) => {
+      // Handle error
+      setLoading(false);
+      setError(true);
     });
 }

@@ -39,12 +39,12 @@ export default function Autosuggestion({ value, setValue, options }) {
           {suggestedOptions.map((option) => (
             <li
               className="autosuggestion__list__item"
-              key={option}
+              key={option._id}
               onClick={onOptionsClick}
             >
               <Image
                 className="autosuggestion__list__item__img"
-                src={option.img}
+                src={option.image}
                 alt={option.title}
                 height={20}
                 width={30}

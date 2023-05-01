@@ -165,14 +165,15 @@
   }
   &__cover {
     margin-top: 2.2rem;
-    height: 20vh;
+    height: 7vh;
     width: 100%;
 
     background: $color-primary-light;
+    background-color: $color-gray;
     @include flexCenter;
     &__title {
       color: $color-white;
-      font-size: 3.6rem;
+      font-size: 2.8rem;
     }
   }
   &__tab {
@@ -183,13 +184,13 @@
   &__dashboard {
     &__welcome {
       padding-top: 2.5rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 5.5rem;
       text-align: center;
       h1 {
         line-height: 1.2;
-        font-size: 3.2rem;
-        font-weight: 300;
-        color: $color-gray;
+        font-size: 2rem;
+        font-weight: 400;
+        color: $color-gray-dark;
       }
     }
     &__cards {

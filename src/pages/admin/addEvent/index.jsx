@@ -1,5 +1,5 @@
+import { getParentEvents } from "@/actions/event";
 import AdminTopBar from "@/components/admin/adminTopBar";
-import ExecutiveCard from "@/components/cards/executiveCard";
 import Editor from "@/components/editor";
 import EventDetailsForm from "@/components/event/eventDetailsForm";
 import EventImagesForm from "@/components/event/eventImagesForm";
@@ -8,8 +8,10 @@ import EventScheduleForm from "@/components/event/eventScheduleForm";
 import EventSponsorForm from "@/components/event/eventSponsorForm";
 import Stepper from "@/components/stepper";
 import StepSwitcher from "@/components/stepper/stepSwitcher";
+import { ProgressBar } from "react-loader-spinner";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Head from "next/head";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const initialSteps = [
   { title: "Provide Details", validated: false, no: 1 },
@@ -23,31 +25,24 @@ const initialSteps = [
   { title: "Sponsor", validated: false, no: 5 },
   { title: "Preview & Save", validated: false, no: 6 },
 ];
-const options = [
-  {
-    id: "234d32",
-    title: "It Carnival",
-  },
-  {
-    id: "83def2",
-    title: "Gaming",
-  },
-];
 
 export default function AddEvent() {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [steps, setSteps] = useState(initialSteps);
   const [currentStep, setCurrentStep] = useState(1);
   // first step
   const [title, setTitle] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [parent, setParent] = useState("");
+  const [parentOptions, setParentOptions] = useState([]);
 
   // second step
   const editorRef = useRef();
   const [description, setDescription] = useState("");
 
   // third step
-  const [img, setImg] = useState(null);
+  const [image, setImage] = useState(null);
   const [coverImgLand, setCoverImgLand] = useState(null);
   const [coverImgPort, setCoverImgPort] = useState(null);
 
@@ -57,8 +52,11 @@ export default function AddEvent() {
   // fifth step
   const [sponsors, setSponsors] = useState([]);
 
-  const [validateError, setValidateError] = useState("There is a error");
+  const [validateError, setValidateError] = useState("");
 
+  useEffect(() => {
+    getParentEvents(setParentOptions, setLoading, setError);
+  }, []);
   function onTitleChange(e) {
     setTitle(e.target.value);
   }
@@ -70,7 +68,7 @@ export default function AddEvent() {
   function handleImgChange(event) {
     if (event.target.files && event.target.files[0]) {
       const selectedImage = event.target.files[0];
-      setImg(selectedImage);
+      setImage(selectedImage);
     }
   }
 
@@ -142,7 +140,7 @@ export default function AddEvent() {
       }
     }
     if (step === 3) {
-      if (!img || !coverImgLand || !coverImgPort) {
+      if (!image || !coverImgLand || !coverImgPort) {
         setValidateError(
           "please provide image , landscape and portrait cover imgs to procced next!"
         );
@@ -169,7 +167,7 @@ export default function AddEvent() {
           setParentValue={setParent}
           onTitle={onTitleChange}
           onShortDescription={onShortDescriptionChange}
-          options={options}
+          options={parentOptions}
         />
       );
     if (step === 2)
@@ -191,7 +189,7 @@ export default function AddEvent() {
     if (step === 3)
       return (
         <EventImagesForm
-          img={img}
+          img={image}
           coverImgLand={coverImgLand}
           coverImgPort={coverImgPort}
           handleCoverLandChange={handleCoverLandChange}
@@ -218,6 +216,7 @@ export default function AddEvent() {
     if (step === 6)
       return (
         <EventSaveAndPreview
+          parentId={getParentId()}
           event={getEvent()}
           formEvent={getEventFormData()}
         />
@@ -232,7 +231,7 @@ export default function AddEvent() {
       description,
       schedules,
       sponsors,
-      img: URL.createObjectURL(img),
+      img: URL.createObjectURL(image),
       coverImgLand: URL.createObjectURL(coverImgLand),
       coverImgPort: URL.createObjectURL(coverImgPort),
     };
@@ -240,6 +239,12 @@ export default function AddEvent() {
     return event;
   }
 
+  function getParentId() {
+    let parentId = "";
+    let matched = parentOptions.filter((p) => p.title === parent)[0];
+    if (matched) parentId = matched._id;
+    return parentId;
+  }
   function getEventFormData() {
     const formData = new FormData();
     formData.append("title", title);
@@ -269,7 +274,7 @@ export default function AddEvent() {
     formData.append("sponsors", JSON.stringify(filteredSponsors));
 
     // Append the image files to the form data
-    formData.append("image", img);
+    formData.append("image", image);
     formData.append("coverImgLand", coverImgLand);
     formData.append("coverImgPort", coverImgPort);
     return formData;
@@ -285,54 +290,72 @@ export default function AddEvent() {
       <div>
         <AdminTopBar />
         <div className="addevent__page">
-          <div className="addevent__wrapper">
-            <StepSwitcher
-              excepts={[6]}
-              setStep={setCurrentStep}
-              steps={steps}
+          {loading && (
+            <ProgressBar
+              height="40"
+              width="40"
+              ariaLabel="progress-bar-loading"
+              wrapperStyle={{}}
+              wrapperClass="progress-bar-wrapper"
+              borderColor="#F4442E"
+              barColor="#51E5FF"
             />
-            <div className="addevent__stepper">
-              <Stepper step={currentStep} steps={steps} />
-            </div>
-            <div className="addevent__step__details">
-              {chooseComp(currentStep)}
-              {validateError && (
-                <div className="addevent__step__error">{validateError}</div>
-              )}
-              <div className="addevent__step__btns">
-                {currentStep !== 1 && (
-                  <button
-                    onClick={() => {
-                      setCurrentStep(currentStep - 1);
-                    }}
-                    className="addevent__step__btn addevent__step__btn--left"
-                  >
-                    Prev
-                  </button>
+          )}
+          {error && (
+            <button className={`state-btn state-btn--error`}>
+              <RestartAltIcon fontSize="medium" /> Something Bad Happend
+            </button>
+          )}
+          {!loading && !error && (
+            <div className="addevent__wrapper">
+              <StepSwitcher
+                excepts={[6]}
+                setStep={setCurrentStep}
+                steps={steps}
+              />
+              <div className="addevent__stepper">
+                <Stepper step={currentStep} steps={steps} />
+              </div>
+              <div className="addevent__step__details">
+                {chooseComp(currentStep)}
+                {validateError && (
+                  <div className="addevent__step__error">{validateError}</div>
                 )}
-                {currentStep !== steps.length && (
-                  <button
-                    onClick={() => {
-                      if (currentStep === 2) {
-                        if (editorRef.current.value) {
-                          setDescription(editorRef.current.value);
-                          setCurrentStep(currentStep + 1);
-                          updateStepsValidate(2, true);
-                          return;
+                <div className="addevent__step__btns">
+                  {currentStep !== 1 && (
+                    <button
+                      onClick={() => {
+                        setCurrentStep(currentStep - 1);
+                      }}
+                      className="addevent__step__btn addevent__step__btn--left"
+                    >
+                      Prev
+                    </button>
+                  )}
+                  {currentStep !== steps.length && (
+                    <button
+                      onClick={() => {
+                        if (currentStep === 2) {
+                          if (editorRef.current.value) {
+                            setDescription(editorRef.current.value);
+                            setCurrentStep(currentStep + 1);
+                            updateStepsValidate(2, true);
+                            return;
+                          }
                         }
-                      }
 
-                      const isValidated = validateStep(currentStep);
-                      isValidated && setCurrentStep(currentStep + 1);
-                    }}
-                    className="addevent__step__btn addevent__step__btn--right"
-                  >
-                    Next
-                  </button>
-                )}
+                        const isValidated = validateStep(currentStep);
+                        isValidated && setCurrentStep(currentStep + 1);
+                      }}
+                      className="addevent__step__btn addevent__step__btn--right"
+                    >
+                      Next
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
