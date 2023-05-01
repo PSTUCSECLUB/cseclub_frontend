@@ -1,4 +1,23 @@
 .event {
+  &__status__wrapper {
+    @include flexCenter;
+    flex-direction: column;
+    gap: 1rem;
+    height: 80vh;
+  }
+  &__loading {
+    font-weight: 500;
+    p {
+      text-align: center;
+      margin-left: 3rem;
+    }
+  }
+  &__error {
+    font-weight: 400;
+    color: $color-error;
+    text-align: center;
+  }
+
   &__coverimg {
     object-fit: cover;
     &__wrapper {

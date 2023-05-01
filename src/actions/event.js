@@ -47,6 +47,20 @@ export function getEvents(dispatch) {
       dispatch({ type: "error" });
     });
 }
+export function getEvent(id, setLoading, setError, setEvent) {
+  API.get("/events/" + id)
+    .then((response) => {
+      // Handle success
+      setLoading(false);
+      setError(false);
+      setEvent(response.data.singleEvent);
+    })
+    .catch((error) => {
+      // Handle error
+      setLoading(false);
+      setError(true);
+    });
+}
 
 export function updateInEventPage(eventId, state, setStateBtnState) {
   setStateBtnState("loading");
