@@ -1,0 +1,113 @@
+article {
+  line-height: 1.7;
+}
+article a {
+  text-decoration: none;
+}
+article img {
+  width: 100%;
+}
+.ql-syntax {
+  background-color: rgb(8, 8, 54);
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+.ql-align-center {
+  width: 100%;
+  text-align: center;
+}
+.ql-video {
+  width: 100%;
+  height: 40vh;
+}
+code {
+  width: 80ch;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 30px;
+  background: linear-gradient(
+      to right,
+      black 0ch,
+      #78dce8 0ch,
+      #78dce8 3ch,
+      black 3ch,
+      black 18ch,
+      #ffd658 18ch,
+      #ffd658 31ch,
+      black 31ch,
+      black 80ch
+    ),
+    linear-gradient(
+      to right,
+      black 0ch,
+      #a6e22e 0ch,
+      #a6e22e 3ch,
+      black 3ch,
+      black 12ch,
+      #f92672 12ch,
+      #f92672 15ch,
+      #a7c 15ch,
+      #a7c 17ch,
+      black 17ch,
+      black 80ch
+    ),
+    linear-gradient(
+      to right,
+      black 0ch,
+      black 0ch,
+      black 4ch,
+      #fd971f 4ch,
+      #fd971f 11ch,
+      black 11ch,
+      black 12ch,
+      #a6e22e 12ch,
+      #a6e22e 15ch,
+      black 15ch,
+      black 16ch,
+      #ffd658 16ch,
+      #ffd658 34ch,
+      #f92672 34ch,
+      #f92672 37ch,
+      black 37ch,
+      black 80ch
+    ),
+    linear-gradient(
+      to right,
+      rgb(0, 0, 0) 0ch,
+      rgb(0, 0, 0) 0ch,
+      rgb(0, 0, 0) 80ch
+    ),
+    linear-gradient(
+      to right,
+      rgb(36, 30, 30) 0ch,
+      rgb(0, 0, 0) 0ch,
+      rgb(0, 0, 0) 80ch
+    );
+  background-repeat: no-repeat;
+  background-size: 80ch 50px, 80ch 60px, 80ch 90px, 80ch 120px, 80ch 150px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  font-size: 20px;
+  color: rgb(69, 108, 208);
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}

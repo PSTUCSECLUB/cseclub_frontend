@@ -1,0 +1,113 @@
+.header {
+  position: absolute;
+  display: flex;
+  z-index: 1;
+  top: 0;
+  color: white;
+  padding: 35px;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 300;
+  box-sizing: border-box;
+  align-items: center;
+
+  .logo {
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+
+    .el {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+      padding: 15px;
+      cursor: pointer;
+      &:hover {
+        .indicator {
+          transform: scale(1);
+        }
+      }
+      .indicator {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        top: 45px;
+        left: 50%;
+        background-color: white;
+        border-radius: 50%;
+        transform: scale(0) translateX(-50%);
+        transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+}
+.headerButtonContainer {
+  transform: scale(1);
+  position: fixed;
+  right: 0px;
+  z-index: 4000;
+
+  .button {
+    position: relative;
+    margin: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f8faff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #50f7a6;
+    @media screen and (max-width: 700px) {
+      width: 60px;
+      height: 60px;
+    }
+    @media screen and (max-width: 500px) {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .burger {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 40%;
+      margin: auto;
+      background-color: rgb(0, 0, 0);
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    &::after {
+      top: -5px;
+    }
+
+    &::before {
+      top: 5px;
+    }
+  }
+
+  .burgerActive {
+    &::after {
+      transform: rotate(45deg);
+      top: -1px;
+    }
+
+    &::before {
+      transform: rotate(-45deg);
+      top: 0px;
+    }
+  }
+}

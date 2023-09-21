@@ -1,0 +1,42 @@
+.roundedButton {
+  border-radius: 3em;
+  border: 1px solid #50f7a6;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 60px 15px 60px;
+  @media (max-width: 1024px) {
+    padding: 10px 50px 10px 50px;
+  }
+  @media (max-width: 724px) {
+    padding: 10px 40px 10px 40px;
+  }
+  @media (max-width: 524px) {
+    padding: 7px 30px 7px 30px;
+  }
+
+  p {
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s linear;
+    @media (max-width: 524px) {
+      font-size: 14px !important;
+    }
+  }
+
+  &:hover {
+    p {
+      color: white;
+    }
+  }
+}
+
+.circle {
+  width: 100%;
+  height: 150%;
+  position: absolute;
+  border-radius: 50%;
+  top: 100%;
+}
