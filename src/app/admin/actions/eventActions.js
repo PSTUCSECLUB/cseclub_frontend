@@ -38,6 +38,7 @@ export const addEvent = async (formData) => {
     const response = await api.post("/", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
       },
     });
     return response.data;
@@ -49,7 +50,11 @@ export const addEvent = async (formData) => {
 
 export const deleteEvent = async (id) => {
   try {
-    const response = await api.delete("/" + id);
+    const response = await api.delete("/" + id, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -63,6 +68,7 @@ export const updateEvent = async (id, data) => {
     const response = await api.put(`/${id}`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
       },
     });
     return response.data;
@@ -77,6 +83,7 @@ export const updateAlumniPhoto = async (id, data) => {
     const response = await api.patch(`/${id}/updatePhoto`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
       },
     });
     return response.data;

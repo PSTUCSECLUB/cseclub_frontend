@@ -105,8 +105,16 @@ export default function Home({}) {
     setModal({ active, index });
   };
 
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+  });
+  const height = useTransform(scrollYProgress, [0, 1], [50, 0]);
+
   return (
     <motion.main
+      ref={container}
       onMouseMove={(e) => {
         moveItems(e.clientX, e.clientY);
       }}
@@ -137,6 +145,7 @@ export default function Home({}) {
               index={index}
               title={event.title}
               date={event.startDate}
+              participants={event.participants}
               manageModal={manageModal}
               key={index}
               id={event._id}
@@ -211,7 +220,7 @@ export default function Home({}) {
           View
         </motion.div>
       </>
-      <motion.div className={styles.circleContainer}>
+      <motion.div style={{ height }} className={styles.circleContainer}>
         <div className={styles.circle}></div>
       </motion.div>
     </motion.main>

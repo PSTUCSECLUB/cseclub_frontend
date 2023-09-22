@@ -23,30 +23,10 @@ const slider1 = [
   },
 ];
 
-const slider2 = [
-  {
-    color: "#d4e3ec",
-    src: "maven.jpg",
-  },
-  {
-    color: "#e5e0e1",
-    src: "panda.jpg",
-  },
-  {
-    color: "#d7d4cf",
-    src: "powell.jpg",
-  },
-  {
-    color: "#e1dad6",
-    src: "wix.jpg",
-  },
-];
-
 export default function index() {
   const isTabletLand = useMediaQuery({ query: "(max-width: 1324px)" });
   const isTabletPort = useMediaQuery({ query: "(max-width: 720px)" });
-  console.log(isTabletLand, "tabletland");
-  console.log(isTabletPort, "tablet port");
+
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -109,7 +89,12 @@ export default function index() {
       <Image
         fill={true}
         src={"/texture.jpg"}
-        style={{ top: 0, opacity: 0.2, objectFit: "cover" }}
+        style={{
+          top: 0,
+          pointerEvents: "none",
+          opacity: 0.1,
+          objectFit: "cover",
+        }}
         alt="texture"
       />
     </div>

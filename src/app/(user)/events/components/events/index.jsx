@@ -157,6 +157,7 @@ export default function Home() {
               manageModal={manageModal}
               key={index}
               id={event._id}
+              participants={event.participants}
             />
           );
         })}

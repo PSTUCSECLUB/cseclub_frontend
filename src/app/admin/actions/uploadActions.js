@@ -15,6 +15,7 @@ export const postImage = async (formData) => {
     const response = await api.post("/uploadImg", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
       },
     });
     return response.data;
@@ -26,7 +27,12 @@ export const postImage = async (formData) => {
 
 export const deleteImage = async (body) => {
   try {
-    const response = await api.put("/remove", body);
+    const response = await api.put("/remove", {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);

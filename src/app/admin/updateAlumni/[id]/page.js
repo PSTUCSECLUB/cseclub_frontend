@@ -22,7 +22,10 @@ import { Alert, CircularProgress } from "@mui/joy";
 import FeedbackModal from "../../components/FeedbackModal";
 import { useParams, useRouter } from "next/navigation";
 import useFeather from "@/app/hooks/useFeather";
+import { useIsAdmin } from "@/app/hooks/isAdmin";
+import Link from "next/link";
 export default function UpdateAlumni() {
+  useIsAdmin();
   let { id } = useParams();
   let router = useRouter();
   const [alumni, setAlumni] = useState(null);
@@ -130,7 +133,6 @@ export default function UpdateAlumni() {
       // Optionally, you can update the data in the SWR cache
       // by calling the `mutate` function.
       setData(data || photo);
-      console.log(data);
 
       setError(null);
       setLoading(false);
@@ -305,14 +307,16 @@ export default function UpdateAlumni() {
         <FeedbackModal
           msg={"Alumni " + alumni.name + " is updated Successfully"}
           actions={[
-            <Button
-              size="sm"
-              onClick={() => router.push("/admins/updateAlumni/" + alumni._id)}
-            >
+            <Button size="sm" onClick={() => setData(null)}>
               Update Again
             </Button>,
             <Button variant="outlined" size="sm">
-              View Alumnies
+              <Link
+                style={{ font: "inherit", textDecoration: "none" }}
+                href={"/admin/alumnies"}
+              >
+                View Alumnies
+              </Link>
             </Button>,
           ]}
         />

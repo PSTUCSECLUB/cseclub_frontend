@@ -53,7 +53,7 @@ export default function EventDetailsPage() {
 
       <AnimatePresence>
         {isLoading && (
-          <Preloader words={["Please wait", "We are ", "almost ready"]} />
+          <Preloader words={["Please wait", "we are ", "almost ready"]} />
         )}
       </AnimatePresence>
       <motion.div variants={slideUp} initial="initial" animate="enter">

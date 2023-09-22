@@ -7,11 +7,13 @@ import { useLayoutEffect } from "react";
 import useScript from "../useScript";
 import AlumniDataTable from "../components/AlumniDataTable";
 import Link from "next/link";
+import { useIsAdmin } from "@/app/hooks/isAdmin";
 
 const useEnhancedEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export default function Alumnies() {
+  useIsAdmin();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [alumnies, setAlumnies] = useState(null);

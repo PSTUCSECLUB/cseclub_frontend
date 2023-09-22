@@ -25,29 +25,28 @@ import { addEvent, getEvent, updateEvent } from "../../actions/eventActions";
 import { useParams } from "next/navigation";
 import MyEditor from "../../components/Editor/quilEditor";
 import EventPreview from "../../components/EventPreview";
+import { useIsAdmin } from "@/app/hooks/isAdmin";
 export default function UpdateEvent() {
+  useIsAdmin();
   const [event, setEvent] = useState({});
   let { id } = useParams();
   const titleInput = useInput("");
   const shortDescInput = useInput("");
   const startDateInput = useInput("");
   const endDateInput = useInput("");
-  const descInput = useInput("");
+
   const participantInput = useInput("");
   const websiteLinkInput = useInput("");
-  const [description, setDescription] = useState({ value: null });
+
   const [qValue, setQValue] = useState("");
   const [qImageFiles, setQImageFiles] = useState([]);
 
   // photo
   const [image, setImage] = useState(null);
-  const [images, setImages] = useState([]);
-  const [imagesUrls, setImagesUrls] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   useFeather();
-  console.log(event);
 
   useEffect(() => {
     (async () => {
@@ -72,8 +71,6 @@ export default function UpdateEvent() {
     endDateInput.setValue(event.endDate);
     participantInput.setValue(event?.participants);
     websiteLinkInput.setValue(event.websiteLink);
-    setDescription({ value: event.description });
-    setImagesUrls([...event.images]);
     setQValue(event.description);
     // get images link
     let matches = event.description.match(/src="(.*?)"/g);
@@ -102,43 +99,7 @@ export default function UpdateEvent() {
   function handleDescription(value) {
     setDescription({ value });
   }
-  const handleImagesChange = (event) => {
-    const files = event.target.files;
-    const arr = Array.from(files);
-    let temp = [];
-    let urls = [];
-    for (let i of arr) {
-      let url = URL.createObjectURL(i);
-      temp.push({ url, file: i });
-      urls.push(url);
-    }
 
-    if (temp.length + images.length <= 8) {
-      setImages((images) => {
-        return [...images, ...temp];
-      });
-      setImagesUrls([...imagesUrls, ...urls]);
-    } else {
-      alert("sorry, more than 8 images are not allowed");
-    }
-  };
-
-  const handleRemoveImages = (i, imgUrl) => {
-    // image might be old
-    let filteredImages;
-    let found = images.filter((img) => {
-      return img.url === imgUrl;
-    });
-
-    // if needed updating new images
-    if (found.length) {
-      let newImages = images.filter((i) => i.url !== imgUrl);
-      setImages(newImages);
-    }
-    filteredImages = imagesUrls.filter((i) => imgUrl !== i);
-
-    setImagesUrls(filteredImages);
-  };
   function validateInputs() {
     if (titleInput.value === "") {
       setError(new Error("Title is not given!"));
@@ -216,29 +177,6 @@ export default function UpdateEvent() {
       updatedFlag = true;
       formData.append("image", image);
     }
-    if (images.length) {
-      updatedFlag = true;
-      for (let i of images) {
-        console.log(i.file);
-        formData.append("images", i.file);
-      }
-    }
-    // is the old images deleted?
-    let removedImages = [];
-    for (let img of event.images) {
-      if (!imagesUrls.includes(img)) {
-        removedImages.push(img);
-      }
-    }
-    if (removedImages.length) {
-      updatedFlag = true;
-      console.log(removedImages);
-      formData.append("removedImages", JSON.stringify(removedImages));
-    }
-
-    formData.forEach((value, key) => {
-      console.log(key + "-" + value);
-    });
 
     try {
       setLoading(true);
@@ -403,79 +341,6 @@ export default function UpdateEvent() {
         </Box>
 
         <Divider role="presentation" />
-        <Box>
-          <FormLabel>Images</FormLabel>
-          <FormHelperText>
-            Those images will be shown on events slider.
-          </FormHelperText>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "flex-start",
-            flexWrap: "wrap",
-            gap: 2.5,
-          }}
-        >
-          <Card>
-            <FormControl sx={{ flex: 1, textAlign: "center" }}>
-              <FormLabel
-                htmlFor="images"
-                sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-              >
-                <Box
-                  sx={{
-                    p: 1,
-                    bgcolor: "background.level1",
-                    borderRadius: "50%",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: "50%",
-                      bgcolor: "background.level2",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <i data-feather="upload-cloud" />
-                  </Box>
-                </Box>
-                <Link component={"span"}>Click here to upload</Link>
-              </FormLabel>
-              <input
-                style={{ display: "none" }}
-                id="images"
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handleImagesChange}
-              />
-            </FormControl>
-          </Card>
-        </Box>
-        <Divider></Divider>
-        {imagesUrls.length > 0 && <Box>Those images are selected</Box>}
-        <Box>
-          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-            {imagesUrls.map((img, i) => {
-              return (
-                <ImageCard
-                  id={i}
-                  handleRemove={handleRemoveImages}
-                  imgUrl={img}
-                  key={i}
-                />
-              );
-            })}
-          </Box>
-        </Box>
-
-        <Divider role="presentation" />
 
         {error && <Alert color="danger">{error.message}</Alert>}
         <Box
@@ -508,7 +373,7 @@ export default function UpdateEvent() {
             </Button>,
             <Button variant="outlined" size="sm">
               <NLink
-                href={"/admin/events/" + event._id}
+                href={"/admin/events/"}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 View Events

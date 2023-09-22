@@ -52,6 +52,7 @@ export default function Sidebar({ currentPath }) {
         gap: 2,
         borderRight: "1px solid",
         borderColor: "divider",
+        zIndex: 109999,
       }}
     >
       <GlobalStyles
@@ -68,7 +69,7 @@ export default function Sidebar({ currentPath }) {
         className="Sidebar-overlay"
         sx={{
           position: "fixed",
-          zIndex: 9998,
+          zIndex: 109998,
           top: 0,
           left: 0,
           width: "100vw",
@@ -84,8 +85,9 @@ export default function Sidebar({ currentPath }) {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-        <MuiLogo />
-        <Typography fontWeight="xl">MUI</Typography>
+        <Typography color="primary" fontWeight={500}>
+          CSE CLUB
+        </Typography>
         <ColorSchemeToggle sx={{ ml: "auto" }} />
       </Box>
       <Box
@@ -159,7 +161,7 @@ export default function Sidebar({ currentPath }) {
               <ListItemContent>Blogs</ListItemContent>
             </ListItemButton>
           </ListItem>
-          <ListItem>
+          {/* <ListItem>
             <ListItemButton
               onClick={() => router.push("/admin/users")}
               selected={currentPath === "/users"}
@@ -169,7 +171,7 @@ export default function Sidebar({ currentPath }) {
               </ListItemDecorator>
               <ListItemContent>Users</ListItemContent>
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
           <ListItem>
             <ListItemButton
               onClick={() => router.push("/admin/addAlumni")}
@@ -210,11 +212,17 @@ export default function Sidebar({ currentPath }) {
         <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
         <Box sx={{ minWidth: 0, flex: 1 }}>
           <Typography fontSize="sm" fontWeight="lg">
-            Siriwat K.
+            CSE Club admin
           </Typography>
-          <Typography level="body3">siriwatk@test.com</Typography>
         </Box>
-        <IconButton variant="plain" color="neutral">
+        <IconButton
+          variant="plain"
+          color="neutral"
+          onClick={() => {
+            sessionStorage.setItem("adminToken", undefined);
+            router.replace("/admin/signin");
+          }}
+        >
           <i data-feather="log-out" />
         </IconButton>
       </Box>

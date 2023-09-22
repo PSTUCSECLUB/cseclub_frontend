@@ -19,18 +19,18 @@
   p {
     display: flex;
     color: white;
-    font-size: 42px;
+    font-size: 32px;
     align-items: center;
     position: absolute;
     z-index: 1;
     @media (max-width: 1024px) {
-      font-size: 36px;
+      font-size: 28px;
     }
     @media (max-width: 724px) {
-      font-size: 32px;
+      font-size: 24px;
     }
     @media (max-width: 524px) {
-      font-size: 28px;
+      font-size: 20px;
     }
     // span {
     //   display: block;

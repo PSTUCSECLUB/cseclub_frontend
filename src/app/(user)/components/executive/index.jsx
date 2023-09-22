@@ -25,12 +25,26 @@ export default function Executives() {
     })();
   }, []);
 
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [-100, 0]);
+
   return (
-    <motion.main className={styles.executives}>
+    <motion.main style={{ y }} ref={container} className={styles.executives}>
       <Image
         fill={true}
         src={"/texture1.jpg"}
-        style={{ top: 50, opacity: 0.02, zIndex: 0, objectFit: "cover" }}
+        style={{
+          top: 50,
+          pointerEvents: "none",
+          opacity: 0.02,
+          zIndex: 0,
+          objectFit: "cover",
+        }}
         alt="texture"
       />
 

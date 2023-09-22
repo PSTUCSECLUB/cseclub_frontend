@@ -5,7 +5,14 @@ import { useRouter } from "next/navigation";
 import { Button } from "@mui/joy";
 import { useMediaQuery } from "react-responsive";
 
-export default function index({ index, title, date, manageModal, id }) {
+export default function index({
+  index,
+  title,
+  date,
+  participants,
+  manageModal,
+  id,
+}) {
   let router = useRouter();
   const isTouch = useMediaQuery({
     query: " (hover: none)",
@@ -33,7 +40,8 @@ export default function index({ index, title, date, manageModal, id }) {
       }}
     >
       <h2>{title}</h2>
-      <p>Date: {date}</p>
+      {participants && <p>Participants : {participants}</p>}
+      <p>Date : {date}</p>
       {isTouch && (
         <Button
           variant="outlined"

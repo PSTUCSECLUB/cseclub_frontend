@@ -18,7 +18,9 @@ import { Alert, CircularProgress } from "@mui/joy";
 import FeedbackModal from "../components/FeedbackModal";
 import useFeather from "@/app/hooks/useFeather";
 import NLink from "next/link";
+import { useIsAdmin } from "@/app/hooks/isAdmin";
 export default function AddAlumni() {
+  useIsAdmin();
   const nameInput = useInput("");
   const emailInput = useInput("");
   const sessionInput = useInput("");
@@ -277,10 +279,10 @@ export default function AddAlumni() {
             </Button>,
             <Button variant="outlined" size="sm">
               <NLink
-                href={"/admin/events"}
+                href={"/admin/alumnies"}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                View Events
+                View Alumnies
               </NLink>
             </Button>,
           ]}

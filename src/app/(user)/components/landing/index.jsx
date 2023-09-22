@@ -14,7 +14,7 @@ export default function Home() {
       className={styles.landing}
     >
       <Image
-        style={{ opacity: 0.2 }}
+        style={{ opacity: 0.2, pointerEvents: "none" }}
         src={"/images/main.gif"}
         fill={true}
         alt="background"

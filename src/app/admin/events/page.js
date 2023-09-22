@@ -7,6 +7,7 @@ import { deleteEvent, getEvents } from "../actions/eventActions";
 import EventCard from "../components/EventCard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useIsAdmin } from "@/app/hooks/isAdmin";
 
 let toastSuccessConfig = {
   position: "top-right",
@@ -30,6 +31,7 @@ let toastFailureConfig = {
 };
 
 export default function Events() {
+  useIsAdmin();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);

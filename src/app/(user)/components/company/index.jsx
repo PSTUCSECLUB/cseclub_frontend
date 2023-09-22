@@ -28,7 +28,7 @@ export default function Companies() {
         </p>
       </div>
       <div className={styles.body}>
-        <div class={styles.logos}>
+        <div className={styles.logos}>
           <div class={styles.logosSlide}>
             <img src="/images/logos/3m.svg" />
             <img src="/images/logos/barstool-store.svg" />

@@ -37,6 +37,7 @@ export const addExecutive = async (formData) => {
     const response = await api.post("/", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
       },
     });
     return response.data;
@@ -48,7 +49,11 @@ export const addExecutive = async (formData) => {
 
 export const deleteExecutive = async (id) => {
   try {
-    const response = await api.delete("/" + id);
+    const response = await api.delete("/" + id, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -62,6 +67,7 @@ export const updateExecutive = async (id, data) => {
     const response = await api.put(`/${id}`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
       },
     });
     return response.data;

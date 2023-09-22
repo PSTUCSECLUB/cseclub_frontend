@@ -8,8 +8,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toastFailureConfig, toastSuccessConfig } from "../utils/toastConfig";
 import UpdateExecutive from "./components/UpdateExecutive";
+import { useIsAdmin } from "@/app/hooks/isAdmin";
 
 export default function Executives() {
+  useIsAdmin();
   let [executives, setExecutives] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -77,7 +79,7 @@ export default function Executives() {
           />
         )}
         {executives && (
-          <Box sx={{ display: "flex", gap: 2 }}>
+          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
             {executives.map((e) => {
               return (
                 <ExecutiveCard

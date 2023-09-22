@@ -5,6 +5,7 @@ import Sheet from "@mui/joy/Sheet";
 import MuiLogo from "./MuiLogo";
 import ColorSchemeToggle from "./ColorSchemeToggle";
 import { toggleSidebar } from "../utils";
+import { Typography } from "@mui/joy";
 
 export default function Header() {
   return (
@@ -41,7 +42,7 @@ export default function Header() {
       >
         <i data-feather="menu" />
       </IconButton>
-      <MuiLogo variant="plain" sx={{ boxShadow: "none", mr: "auto" }} />
+      <Typography>CSE CLUB</Typography>
       <ColorSchemeToggle id={undefined} />
     </Sheet>
   );

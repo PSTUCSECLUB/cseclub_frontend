@@ -13,7 +13,12 @@ export default function index() {
       <Image
         fill={true}
         src={"/texture.jpg"}
-        style={{ top: 50, opacity: 0.2, objectFit: "cover" }}
+        style={{
+          pointerEvents: "none",
+          top: 50,
+          opacity: 0.1,
+          objectFit: "cover",
+        }}
         alt="texture"
       />
       <div className={styles.body} data-scroll data-scroll-speed={0.1}>

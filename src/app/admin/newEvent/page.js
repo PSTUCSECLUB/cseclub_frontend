@@ -25,7 +25,9 @@ import NLink from "next/link";
 import { addEvent } from "../actions/eventActions";
 import MyEditor from "../components/Editor/quilEditor";
 import EventPreview from "../components/EventPreview";
+import { useIsAdmin } from "@/app/hooks/isAdmin";
 export default function NewEvent() {
+  useIsAdmin();
   const titleInput = useInput("");
   const shortDescInput = useInput("");
   const startDateInput = useInput("");
@@ -38,27 +40,12 @@ export default function NewEvent() {
 
   // photo
   const [image, setImage] = useState(null);
-  const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
 
   useFeather();
 
-  function handleDescription(value) {
-    setDescription({ value });
-  }
-  const handleImagesChange = (event) => {
-    const files = event.target.files;
-    const selectedFiles = Array.from(files);
-
-    setImages((images) => [...images, ...selectedFiles]);
-  };
-
-  const handleRemoveImages = (index) => {
-    let filteredImages = images.filter((img, i) => i !== index);
-    setImages(filteredImages);
-  };
   function validateInputs() {
     if (titleInput.value === "") {
       setError(new Error("Title is not given!"));
@@ -118,9 +105,6 @@ export default function NewEvent() {
     formData.append("participants", participantInput.value);
     formData.append("websiteLink", websiteLinkInput.value);
     formData.append("image", image);
-    for (let img of images) {
-      formData.append("images", img);
-    }
     formData.append("endDate", endDateInput.value);
     formData.append("description", qValue);
     // let socialLinks = {};
@@ -298,78 +282,6 @@ export default function NewEvent() {
               ></Image>
             </Box>
           )}
-        </Box>
-
-        <Divider role="presentation" />
-        <Box>
-          <FormLabel>Images</FormLabel>
-          <FormHelperText>
-            Those images will be shown on events slider.
-          </FormHelperText>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "flex-start",
-            flexWrap: "wrap",
-            gap: 2.5,
-          }}
-        >
-          <Card>
-            <FormControl sx={{ flex: 1, textAlign: "center" }}>
-              <FormLabel
-                for="images"
-                sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-              >
-                <Box
-                  sx={{
-                    p: 1,
-                    bgcolor: "background.level1",
-                    borderRadius: "50%",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: "50%",
-                      bgcolor: "background.level2",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <i data-feather="upload-cloud" />
-                  </Box>
-                </Box>
-                <Link component={"span"}>Click here to upload</Link>
-              </FormLabel>
-              <input
-                style={{ display: "none" }}
-                id="images"
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handleImagesChange}
-              />
-            </FormControl>
-          </Card>
-        </Box>
-        <Divider></Divider>
-        {images.length > 0 && <Box>Those images are selected</Box>}
-        <Box>
-          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-            {images.map((image, i) => {
-              return (
-                <ImageCard
-                  id={i}
-                  handleRemove={handleRemoveImages}
-                  imgUrl={URL.createObjectURL(image)}
-                />
-              );
-            })}
-          </Box>
         </Box>
 
         <Divider role="presentation" />
