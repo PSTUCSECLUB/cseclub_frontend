@@ -37,8 +37,12 @@ export default function Events() {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-
+  let [page, setPage] = useState(1);
+  let [size, setSize] = useState(10);
   useFeather();
+  function paginate(items) {
+    return items.slice(0, page * size);
+  }
 
   useEffect(() => {
     (async () => {
@@ -149,7 +153,7 @@ export default function Events() {
           </Button>
         </Box>
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-          {filteredEvents.map((e) => {
+          {paginate(filteredEvents).map((e) => {
             return (
               <EventCard
                 handleDelete={removeEvent}
@@ -159,6 +163,18 @@ export default function Events() {
             );
           })}
           {events.length === 0 && <Typography>Nothing to show!</Typography>}
+          {error && <Typography>Something bad happend!</Typography>}
+          {filteredEvents.length > page * size && (
+            <Box sx={{ textAlign: "center", mt: 2 }}>
+              <Button
+                onClick={() => {
+                  setPage((page) => page + 1);
+                }}
+              >
+                Load More
+              </Button>
+            </Box>
+          )}
         </Box>
       </Box>
       <ToastContainer

@@ -41,3 +41,8 @@ export default function Home() {
     </main>
   );
 }
+export const metadata = {
+  title: "CSE CLUB, PSTU - Welcome to the cse club hompage",
+  description:
+    "CSE CLUB, PSTU is the largest computer science club in the Barisal Division. Its works to provide support and resources to the computer science student of pstu",
+};

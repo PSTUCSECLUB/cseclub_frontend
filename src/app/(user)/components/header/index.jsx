@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import Nav from "./nav";
 import Rounded from "../roundedButton";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function index() {
   const header = useRef(null);
@@ -21,7 +22,9 @@ export default function index() {
     <>
       <div ref={header} className={styles.header}>
         <div className={styles.logo}>
-          <Image src={"/logo_w.png"} alt="logo" height={48} width={140} />
+          <Link href={"/"}>
+            <Image src={"/logo_w.png"} alt="logo" height={48} width={140} />
+          </Link>
         </div>
       </div>
       <div ref={button} className={styles.headerButtonContainer}>
