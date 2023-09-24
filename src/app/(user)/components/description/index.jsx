@@ -5,7 +5,7 @@ import { slideUp, opacity } from "./animation";
 import Image from "next/image";
 export default function index() {
   const desc =
-    "CSE club is the most wonderful things that ever happend on the earth! CSE club is the most wonderful things that ever happend on the earth!";
+    "The PSTU (Patuakhali Science & Technology University ) CSE Club is a thriving community within our university that's dedicated to nurturing the talents of computer science and engineering enthusiasts. Through workshops, research opportunities, and a supportive network, we empower our members to excel in their fields and make their mark on the world of technology. Join us and be part of a dynamic journey where innovation and excellence converge.";
   const description = useRef(null);
   const isInView = useInView(description);
   return (

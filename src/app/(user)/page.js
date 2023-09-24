@@ -8,6 +8,7 @@ import SlidingImages from "./components/slidingImages";
 import Executives from "./components/executive";
 import Companies from "./components/company";
 import Events from "./components/events";
+import { Metadata } from 'next'
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 

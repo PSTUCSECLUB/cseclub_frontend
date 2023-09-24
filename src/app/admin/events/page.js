@@ -139,7 +139,7 @@ export default function Events() {
             sx={{ width: 280 }}
             variant="outlined"
             type="text"
-            placeholder="Search Alumni"
+            placeholder="Search Event"
             onChange={handleSearchInput}
           />
           <Button size="md">

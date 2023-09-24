@@ -30,7 +30,8 @@ export default function Home() {
             margin: 0,
           }}
         >
-          Largest Computer Science Club in Southern Bangladesh
+          Largest Computer Science Club in Southern Bangladesh. CSE Club of PSTU
+          is an organization runs by teachers and students of Faculty of CSE.
         </Typography>
         <Typography
           level="h1"
