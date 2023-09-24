@@ -1,12 +1,19 @@
 "use client";
 import styles from "./style.module.scss";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import Image from "next/image";
+import { useRef } from "react";
 
 export default function Companies() {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [-200, 0]);
   return (
-    <motion.main className={styles.company}>
+    <motion.main style={{ y }} ref={container} className={styles.company}>
       <div>
         <h2
           style={{
@@ -30,24 +37,14 @@ export default function Companies() {
       <div className={styles.body}>
         <div className={styles.logos}>
           <div className={styles.logosSlide}>
-            <img src="/images/logos/3m.svg" />
-            <img src="/images/logos/barstool-store.svg" />
-            <img src="/images/logos/budweiser.svg" />
-            <img src="/images/logos/buzzfeed.svg" />
-            <img src="/images/logos/forbes.svg" />
-            <img src="/images/logos/macys.svg" />
-            <img src="/images/logos/menshealth.svg" />
-            <img src="/images/logos/mrbeast.svg" />
+            <img src="/images/sponsors/bongodev.svg" />
+            <img src="/images/sponsors/hackerverse.png" />
+            <img src="/images/sponsors/vivasoft.jpg" />
           </div>
           <div className={styles.logosSlide}>
-            <img src="/images/logos/3m.svg" />
-            <img src="/images/logos/barstool-store.svg" />
-            <img src="/images/logos/budweiser.svg" />
-            <img src="/images/logos/buzzfeed.svg" />
-            <img src="/images/logos/forbes.svg" />
-            <img src="/images/logos/macys.svg" />
-            <img src="/images/logos/menshealth.svg" />
-            <img src="/images/logos/mrbeast.svg" />
+            <img src="/images/sponsors/bongodev.svg" />
+            <img src="/images/sponsors/hackerverse.png" />
+            <img src="/images/sponsors/vivasoft.jpg" />
           </div>
         </div>
       </div>

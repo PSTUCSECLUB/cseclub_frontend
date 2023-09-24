@@ -32,6 +32,7 @@ export default function Executives() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [-100, 0]);
+  const height = useTransform(scrollYProgress, [0, 1], [50, 0]);
 
   return (
     <motion.main style={{ y }} ref={container} className={styles.executives}>
@@ -41,7 +42,7 @@ export default function Executives() {
         style={{
           top: 50,
           pointerEvents: "none",
-          opacity: 0.02,
+          opacity: 0.009,
           zIndex: 0,
           objectFit: "cover",
         }}
@@ -74,6 +75,9 @@ export default function Executives() {
           return <Member member={executive} key={index} />;
         })}
       </div>
+      <motion.div style={{ height }} className={styles.circleContainer}>
+        <div className={styles.circle}></div>
+      </motion.div>
     </motion.main>
   );
 }

@@ -5,10 +5,10 @@ import Image from "next/image";
 export default function index() {
   return (
     <div className={styles.footer}>
-      <div className={styles.links}>
+      {/* <div className={styles.links}>
         <a>It Carnival 2023</a>
         <a>Hackathon</a>
-      </div>
+      </div> */}
       <Box>
         <Typography sx={{ mb: 1 }} variant="body-1">
           This site is developed by

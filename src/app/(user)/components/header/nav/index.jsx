@@ -45,9 +45,6 @@ export default function index() {
           }}
           className={styles.nav}
         >
-          <div className={styles.header}>
-            <p>Navigation</p>
-          </div>
           {navItems.map((data, index) => {
             return (
               <Link
@@ -61,7 +58,6 @@ export default function index() {
         </div>
         <Footer />
       </div>
-      <Curve />
     </motion.div>
   );
 }

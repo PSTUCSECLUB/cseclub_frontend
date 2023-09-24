@@ -20,7 +20,7 @@ export default function Footer() {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: 3,
+          gap: 5,
           p: 3,
           justifyContent: "center",
           alignItems: "center",
@@ -28,10 +28,14 @@ export default function Footer() {
       >
         <Box sx={{ display: "flex", gap: 1 }}>
           <Image
-            style={{ borderRadius: 5 }}
-            src={"/logo.png"}
+            style={{
+              borderRadius: 5,
+              padding: "5px 10px",
+              background: "white",
+            }}
+            src={"/logo_w.png"}
             height={48}
-            width={130}
+            width={140}
             alt="cseclublogo"
           />
         </Box>

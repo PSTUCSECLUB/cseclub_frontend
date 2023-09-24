@@ -23,7 +23,13 @@ export default function index() {
       <div ref={header} className={styles.header}>
         <div className={styles.logo}>
           <Link href={"/"}>
-            <Image src={"/logo_w.png"} alt="logo" height={48} width={140} />
+            <Image
+              src={"/logo_w.png"}
+              style={{ padding: "5px 10px", background: "white" }}
+              alt="logo"
+              height={48}
+              width={140}
+            />
           </Link>
         </div>
       </div>
