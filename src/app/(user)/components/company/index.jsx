@@ -29,7 +29,7 @@ export default function Companies() {
       </div>
       <div className={styles.body}>
         <div className={styles.logos}>
-          <div class={styles.logosSlide}>
+          <div className={styles.logosSlide}>
             <img src="/images/logos/3m.svg" />
             <img src="/images/logos/barstool-store.svg" />
             <img src="/images/logos/budweiser.svg" />
@@ -39,7 +39,7 @@ export default function Companies() {
             <img src="/images/logos/menshealth.svg" />
             <img src="/images/logos/mrbeast.svg" />
           </div>
-          <div class={styles.logosSlide}>
+          <div className={styles.logosSlide}>
             <img src="/images/logos/3m.svg" />
             <img src="/images/logos/barstool-store.svg" />
             <img src="/images/logos/budweiser.svg" />

@@ -219,7 +219,7 @@ export default function Sidebar({ currentPath }) {
           variant="plain"
           color="neutral"
           onClick={() => {
-            sessionStorage.setItem("adminToken", undefined);
+            sessionStorage.removeItem("adminToken");
             router.replace("/admin/signin");
           }}
         >

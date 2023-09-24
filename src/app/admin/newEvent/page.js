@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
@@ -17,7 +17,6 @@ import { Alert, Card, CircularProgress, Textarea } from "@mui/joy";
 import FadeAlert from "../components/FadeAlert";
 import FeedbackModal from "../components/FeedbackModal";
 import useFeather from "@/app/hooks/useFeather";
-import Editor from "../components/Editor/Editor";
 import Image from "next/image";
 import ImageCard from "../components/ImageCard";
 import Link from "@mui/joy/Link";

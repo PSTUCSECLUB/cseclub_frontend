@@ -1,14 +1,22 @@
 "use client";
 import { postImage, deleteImage } from "@/app/admin/actions/uploadActions";
-import React, { useEffect, useMemo, useRef } from "react";
-import ReactQuill from "react-quill";
+import React, { forwardRef, useEffect, useMemo, useRef } from "react";
 import "react-quill/dist/quill.snow.css";
 import "./style.css";
+import dynamic from "next/dynamic";
 
+const WrappedEditorr = dynamic(() => import("./reactQuillWrapper"), {
+  ssr: false,
+});
+
+const ForwardRefEditor = forwardRef((props, ref) => (
+  <WrappedEditorr {...props} editorRef={ref} />
+));
 const MyEditor = ({ setValue, setImageFiles, imageFiles, value }) => {
   const quillRef = useRef();
 
   const imageHandler = () => {
+    if (typeof document === "undefined") return;
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
@@ -111,7 +119,7 @@ const MyEditor = ({ setValue, setImageFiles, imageFiles, value }) => {
 
   return (
     <>
-      <ReactQuill
+      <ForwardRefEditor
         ref={quillRef}
         modules={modules}
         formats={formats}

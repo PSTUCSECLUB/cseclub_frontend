@@ -17,10 +17,7 @@ import NLink from "next/link";
 import { Alert, AspectRatio, Card, CircularProgress, Textarea } from "@mui/joy";
 import FeedbackModal from "../../components/FeedbackModal";
 import useFeather from "@/app/hooks/useFeather";
-import Editor from "../../components/Editor/Editor";
-import Image from "next/image";
-import ImageCard from "../../components/ImageCard";
-import Link from "@mui/joy/Link";
+
 import { addEvent, getEvent, updateEvent } from "../../actions/eventActions";
 import { useParams } from "next/navigation";
 import MyEditor from "../../components/Editor/quilEditor";

@@ -76,7 +76,6 @@ export default function Events() {
     let filtered = events?.filter((e) =>
       e.title.toLowerCase().startsWith(searchQuery.toLowerCase())
     );
-    console.log(events, filtered);
     if (filtered) setFilteredEvents(filtered);
   }
   async function removeEvent(id) {

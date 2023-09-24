@@ -16,7 +16,7 @@ export default function EventDetailsPage() {
   let [error, setError] = useState(null);
   let [loading, setLoading] = useState(true);
   let { id } = useParams();
-  console.log(event?.description);
+
   useEffect(() => {
     (async () => {
       try {

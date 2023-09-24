@@ -286,7 +286,6 @@ export default function AlumniCard({ alumni }) {
 }
 function checkEmpty(obj) {
   for (let key of Object.keys(obj)) {
-    console.log(obj[key]);
     if (obj[key]) {
       return false;
     }

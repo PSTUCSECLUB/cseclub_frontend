@@ -21,7 +21,7 @@ export default function AlumniContents() {
   const [loading, setLoading] = useState(true);
   const [shouldFetch, setShouldFetch] = useState(false);
   let [page, setPage] = useState(1);
-  let [size, setSize] = useState(2);
+  let [size, setSize] = useState(15);
 
   // For debouncing
   let func = useCallback(
